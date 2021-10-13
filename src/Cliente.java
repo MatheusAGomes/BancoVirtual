@@ -1,13 +1,15 @@
 
 public class Cliente extends Pessoas {
 	String senha;
-	int quantidadedecontas = 0 ;
+	int quantidadedecontas = 0;
+	Gerente SeuGerente;
 	Conta conta[] = new Conta[5];
 	
 			
-	public Cliente(String nome,String senha) {
+	public Cliente(String nome,String senha,Gerente Gerente) {
 		super(nome);
 		this.senha = senha;
+		this.SeuGerente = Gerente;
 	}
 	
 	

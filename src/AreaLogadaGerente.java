@@ -7,6 +7,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class AreaLogadaGerente extends JFrame {
 
@@ -60,10 +62,23 @@ public class AreaLogadaGerente extends JFrame {
 		panel.add(btnLimitesETaxas);
 		
 		JButton btnCadastroDeUsuarios = new JButton("Cadastro de usuarios");
+		btnCadastroDeUsuarios.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				setVisible(false);
+				CadastroDeCliente CadastroCliente = new CadastroDeCliente(gerente);
+				CadastroCliente.setVisible(true);
+			}
+		});
 		btnCadastroDeUsuarios.setBounds(10, 263, 170, 23);
 		panel.add(btnCadastroDeUsuarios);
 		
 		JButton btnAlterarsuaSenha = new JButton("Alterar sua senha");
+		btnAlterarsuaSenha.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
 		btnAlterarsuaSenha.setBounds(10, 297, 170, 23);
 		panel.add(btnAlterarsuaSenha);
 		
