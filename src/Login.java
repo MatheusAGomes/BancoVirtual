@@ -103,7 +103,7 @@ public class Login extends JFrame {
 					AreaLogadaGerente MenuDoGerente = new AreaLogadaGerente(gerentebasico[i]);
 					this.setVisible(false);
 					MenuDoGerente.setVisible(true);
-					
+					break;
 					
 				}
 			}

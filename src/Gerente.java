@@ -15,5 +15,12 @@ public class Gerente extends Pessoas {
 		this.seuCliente[quantidadedeclientes] = novoCliente;
 	}
 	
+	public void AlterarSenha(String novaSenha)
+	{
+		
+		
+		this.senha = novaSenha;
+	}
+	
 
 }
