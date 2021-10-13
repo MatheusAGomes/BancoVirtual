@@ -5,6 +5,8 @@ public class Conta {
 	public double saldo;
 	public int tipodaconta;
 	public int quantidadedaconta = 0;
+	String[] Movimentações = new String[20];
+	int quantidadedemovimentacoes;
 	
 	
 	

@@ -58,5 +58,26 @@ public class Cliente extends Pessoas {
 			JOptionPane.showMessageDialog(null,"Voce não pode criar mais contas desse tipo");
 		}
 	}
+	public int AcharIndice(String numero,Cliente cliente){
+		int i=0;
+		int valorencontrado=0;
+		int NumeroaSerEncontrado = Integer.valueOf(numero);
+		while(cliente.conta[i] != null)
+		{
+			
+			int NumeroTestado  = cliente.conta[i].numerodaconta;
+			
+			if(NumeroTestado == NumeroaSerEncontrado)
+			{
+					valorencontrado = i;
+			
+			
+			}
+			i++;
+		}
+		return valorencontrado;
+	}
+	
+	
 
 }

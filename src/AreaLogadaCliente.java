@@ -29,8 +29,8 @@ public class AreaLogadaCliente extends JFrame {
 		lblNewLabel.setBounds(10, 30, 46, 14);
 		panel.add(lblNewLabel);
 		
-		JLabel lblNomeDoCliente = new JLabel("New label");
-		lblNomeDoCliente.setBounds(40, 30, 46, 14);
+		JLabel lblNomeDoCliente = new JLabel(cliente.nomedapessoa);
+		lblNomeDoCliente.setBounds(40, 30, 110, 14);
 		panel.add(lblNomeDoCliente);
 		
 		JButton btnAbrirConta = new JButton("Abrir conta");
@@ -47,6 +47,14 @@ public class AreaLogadaCliente extends JFrame {
 		panel.add(btnAbrirConta);
 		
 		JButton btnAplicarDinheiro = new JButton("Aplicar dinheiro");
+		btnAplicarDinheiro.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				AplicarDinheiro janelaDeAplicarDinheiro = new AplicarDinheiro(cliente);
+				setVisible(false);
+				janelaDeAplicarDinheiro.setVisible(true);
+			}
+		});
 		btnAplicarDinheiro.setBounds(10, 105, 140, 23);
 		panel.add(btnAplicarDinheiro);
 		
