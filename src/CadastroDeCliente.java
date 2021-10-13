@@ -61,9 +61,9 @@ public class CadastroDeCliente extends JFrame {
 	
 	public void CadastrarCliente(Gerente gerente[],int indice,Cliente cliente[]) {
 		
-		
-		cliente[0] = new Cliente(txtNome.getText(),txtSenha.getText(),gerente[indice]);
-		gerente[indice].AgregarCliente(cliente[0]);
+		int quantidadedeclientes = gerente[indice].quantidadedeclientes;
+		cliente[quantidadedeclientes] = new Cliente(txtNome.getText(),txtSenha.getText(),gerente[indice]);
+		gerente[indice].AgregarCliente(cliente[quantidadedeclientes]);
 		gerente[indice].quantidadedeclientes = gerente[indice].quantidadedeclientes + 1;
 		this.setVisible(false);
 		AreaLogadaGerente MenuDoGerente = new AreaLogadaGerente(gerente,indice,cliente);

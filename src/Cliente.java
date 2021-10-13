@@ -19,10 +19,10 @@ public class Cliente extends Pessoas {
 	}
 	
 	
-	public void CriarContaSimples() {
+	public void CriarContaSimples(int numerodaconta) {
 		if(quantidadedecontasSimples<1)
 		{
-		this.conta[quantidadedecontasSimples] = new ContaSimples(0);
+		this.conta[quantidadedecontasSimples] = new ContaSimples(numerodaconta);
 		this.quantidadedecontasSimples = this.quantidadedecontasSimples + 1;
 		}
 		else
@@ -32,10 +32,10 @@ public class Cliente extends Pessoas {
 	}
 	
 	
-	public void CriarContaEspecial() {
+	public void CriarContaEspecial(int numerodaconta) {
 		if(quantidadedecontasEspecial<2)
 		{
-			this.conta[quantidadedecontasEspecial] = new ContaEspecial(0);
+			this.conta[quantidadedecontasEspecial] = new ContaEspecial(numerodaconta);
 			this.quantidadedecontasEspecial = this.quantidadedecontasEspecial + 1;
 
 		}
@@ -46,10 +46,10 @@ public class Cliente extends Pessoas {
 		}
 
 
-	public void CriarContaPoupanca() {
+	public void CriarContaPoupanca(int numerodaconta) {
 		if(quantidadedecontasPoupanca<=1)
 		{
-		this.conta[quantidadedecontasPoupanca] = new ContaPoupanca(0);
+		this.conta[quantidadedecontasPoupanca] = new ContaPoupanca(numerodaconta);
 		this.quantidadedecontasPoupanca = this.quantidadedecontasPoupanca + 1;
 
 		}

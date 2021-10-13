@@ -13,6 +13,7 @@ public class Gerente extends Pessoas {
 	public void AgregarCliente(Cliente novoCliente)
 	{
 		this.seuCliente[quantidadedeclientes] = novoCliente;
+		this.quantidadedeclientes = this.quantidadedeclientes + 1;
 	}
 	
 	public void AlterarSenha(String novaSenha)
