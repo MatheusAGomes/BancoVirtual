@@ -17,7 +17,7 @@ public class AreaLogadaGerente extends JFrame {
 	private JPanel contentPane;
 
 
-	public AreaLogadaGerente(Gerente gerente) {
+	public AreaLogadaGerente(Gerente gerente[],int indice,Cliente cliente[]) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 452, 390);
 		contentPane = new JPanel();
@@ -34,12 +34,21 @@ public class AreaLogadaGerente extends JFrame {
 		lblNewLabel.setBounds(10, 11, 104, 14);
 		panel.add(lblNewLabel);
 		
-		JLabel lblNomeDoGerente = new JLabel(gerente.nomedapessoa);
+		JLabel lblNomeDoGerente = new JLabel(gerente[indice].nomedapessoa);
 		lblNomeDoGerente.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblNomeDoGerente.setBounds(41, 11, 82, 14);
 		panel.add(lblNomeDoGerente);
 		
 		JButton btnVerificarContas = new JButton("Verificar Contas");
+		btnVerificarContas.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				setVisible(false);
+				VerificarContasDeClientes menudeverificacao = new VerificarContasDeClientes(gerente[indice]);
+				menudeverificacao.setVisible(true);
+				
+			}
+		});
 		btnVerificarContas.setBounds(10, 59, 170, 23);
 		panel.add(btnVerificarContas);
 		
@@ -68,7 +77,7 @@ public class AreaLogadaGerente extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				setVisible(false);
-				CadastroDeCliente CadastroCliente = new CadastroDeCliente(gerente);
+				CadastroDeCliente CadastroCliente = new CadastroDeCliente(gerente,indice,cliente);
 				CadastroCliente.setVisible(true);
 			}
 		});
@@ -79,13 +88,21 @@ public class AreaLogadaGerente extends JFrame {
 		btnAlterarsuaSenha.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				gerente.AlterarSenha(JOptionPane.showInputDialog("Nova senha: "));
+				gerente[indice].AlterarSenha(JOptionPane.showInputDialog("Nova senha: "));
 			}
 		});
 		btnAlterarsuaSenha.setBounds(10, 297, 170, 23);
 		panel.add(btnAlterarsuaSenha);
 		
 		JButton btnSair = new JButton("Sair");
+		btnSair.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				setVisible(false);
+				Login teladelogin = new Login(gerente,cliente);
+				teladelogin.setVisible(true);
+			}
+		});
 		btnSair.setBounds(225, 297, 170, 23);
 		panel.add(btnSair);
 	}

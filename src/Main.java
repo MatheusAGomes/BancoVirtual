@@ -5,8 +5,9 @@ public class Main {
 		// TODO Auto-generated method stub
 		
 		Gerente gerentebasico[] = new Gerente[20];
+		Cliente cliente[] = new Cliente[20];
 		gerentebasico[0] = new Gerente("adm","123");
-		Login MenuDeLogin = new Login(gerentebasico);
+		Login MenuDeLogin = new Login(gerentebasico,cliente);
 		MenuDeLogin.setVisible(true);
 	}
 

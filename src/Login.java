@@ -20,7 +20,7 @@ public class Login extends JFrame {
 	private JLabel lblSenha;
 	private JTextField txtSenha;
 
-	public Login(Gerente gerentebasico[]) {
+	public Login(Gerente gerentebasico[],Cliente cliente[]) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 320, 345);
 		contentPane = new JPanel();
@@ -65,7 +65,7 @@ public class Login extends JFrame {
 		btnLogar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Logar(gerentebasico,comboBox);
+				Logar(gerentebasico,cliente,comboBox);
 			}
 		});
 		btnLogar.setBounds(32, 207, 225, 23);
@@ -76,7 +76,7 @@ public class Login extends JFrame {
 		panel.add(btnLimpar);
 	}
 	
-	public void Logar(Gerente gerentebasico[],JComboBox comboBox) {
+	public void Logar(Gerente gerentebasico[],Cliente cliente[],JComboBox comboBox) {
 		
 		int i = 0;
 		
@@ -95,12 +95,11 @@ public class Login extends JFrame {
 			{
 		if(Opção.equals(Gerente))
 		{
-			System.out.print("a");
 			if(UsernameObtido.equals(gerentebasico[i].nomedapessoa))
 			{
 				if(SenhaObtida.equals(gerentebasico[i].senha))
 				{
-					AreaLogadaGerente MenuDoGerente = new AreaLogadaGerente(gerentebasico[i]);
+					AreaLogadaGerente MenuDoGerente = new AreaLogadaGerente(gerentebasico,i,cliente);
 					this.setVisible(false);
 					MenuDoGerente.setVisible(true);
 					break;
@@ -108,7 +107,20 @@ public class Login extends JFrame {
 				}
 			}
 		}
-		// CLIENTE
+		if(Opção.equals(Cliente))
+		{
+			if(UsernameObtido.equals(cliente[i].nomedapessoa))
+			{
+				if(SenhaObtida.equals(cliente[i].senha))
+				{
+					AreaLogadaCliente MenuDoCliente = new AreaLogadaCliente(cliente[i	]);
+					this.setVisible(false);
+					MenuDoCliente.setVisible(true);
+					break;
+					
+				}
+			}
+		}
 		
 		
 		i++;
