@@ -10,7 +10,6 @@ public class ContaSimples extends Conta{
 		this.saldo = 0;
 		this.tipodaconta = 1 ;
 		this.quantidadedaconta = this.quantidadedaconta + 1;
-		this.quantidadedemovimentacoes = 0;
 		}
 		else
 		{
@@ -20,20 +19,6 @@ public class ContaSimples extends Conta{
 		}
 	}
 
-	public void setSacar(int valorsacado)
-	{
-			if(valorsacado > (this.saldo))
-			{
-				System.out.print("Você não pode fazer essa operação!");
-			}
-			else
-			{
-				this.saldo = this.saldo - valorsacado;
-			}
-	}	
-	public void Depositar(int valorDepositado)
-	{
-		this.saldo = this.saldo + valorDepositado;
-	}
+	
 	
 }

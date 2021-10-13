@@ -6,12 +6,15 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
+import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Extrato extends JFrame {
 
 	private JPanel contentPane;
 
-	public Extrato() {
+	public Extrato(Cliente cliente) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 452, 440);
 		contentPane = new JPanel();
@@ -23,12 +26,28 @@ public class Extrato extends JFrame {
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Conta");
-		lblNewLabel.setBounds(10, 25, 68, 14);
+		JLabel lblNewLabel = new JLabel("Saldo");
+		lblNewLabel.setBounds(10, 22, 46, 14);
 		panel.add(lblNewLabel);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(88, 21, 164, 22);
-		panel.add(comboBox);
+		JLabel lblNewLabel_1 = new JLabel("R$");
+		lblNewLabel_1.setBounds(46, 22, 46, 14);
+		panel.add(lblNewLabel_1);
+		
+		JLabel lblSaldo = new JLabel(String.valueOf(cliente.TotalSoma()));
+		lblSaldo.setBounds(66, 22, 105, 14);
+		panel.add(lblSaldo);
+		
+		JButton btnRetornar = new JButton("Retornar");
+		btnRetornar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				AreaLogadaCliente janelaCliente = new AreaLogadaCliente(cliente);
+				setVisible(false);
+				janelaCliente.setVisible(true);
+			}
+		});
+		btnRetornar.setBounds(327, 357, 89, 23);
+		panel.add(btnRetornar);
 	}
 }

@@ -67,6 +67,14 @@ public class AreaLogadaCliente extends JFrame {
 		panel.add(btnVerificarSaldo);
 		
 		JButton btnExtrato = new JButton("Extrato");
+		btnExtrato.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Extrato janelaExtrato = new Extrato(cliente);
+				janelaExtrato.setVisible(true);
+				setVisible(false);
+			}
+		});
 		btnExtrato.setBounds(10, 207, 140, 23);
 		panel.add(btnExtrato);
 		

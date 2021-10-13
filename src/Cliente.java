@@ -77,6 +77,20 @@ public class Cliente extends Pessoas {
 		}
 		return valorencontrado;
 	}
+	public double TotalSoma()
+	{
+		double valortotal = 0;
+		int i = 0;
+		
+		while(this.conta[i] != null)
+		{
+			
+			valortotal = this.conta[i].saldo + valortotal;
+			i++;
+			
+		}
+		return valortotal;
+	}
 	
 	
 
