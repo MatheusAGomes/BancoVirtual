@@ -12,15 +12,15 @@ import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class AplicarDinheiro extends JFrame {
+public class SacarDinheiro extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
 
-	public AplicarDinheiro(Cliente cliente[],int indice,Gerente gerente[]) {
+	public SacarDinheiro(Cliente cliente[],int indice,Gerente gerente[]) {
 		int i = 0;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 330, 220);
+		setBounds(100, 100, 330, 221);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -37,6 +37,10 @@ public class AplicarDinheiro extends JFrame {
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(66, 7, 228, 22);
 		panel.add(comboBox);
+		System.out.print(cliente[indice].conta[0].numerodaconta);
+		System.out.print(cliente[indice].conta[1].numerodaconta);
+
+
 		while(cliente[indice].conta[i] != null)
 		{
 			comboBox.addItem(cliente[indice].conta[i].numerodaconta);
@@ -44,7 +48,7 @@ public class AplicarDinheiro extends JFrame {
 			i++;
 		}
 		
-		JLabel lblNewLabel_1 = new JLabel("Valor da aplica\u00E7\u00E3o");
+		JLabel lblNewLabel_1 = new JLabel("Valor do saque");
 		lblNewLabel_1.setBounds(10, 48, 97, 14);
 		panel.add(lblNewLabel_1);
 		
@@ -53,21 +57,28 @@ public class AplicarDinheiro extends JFrame {
 		panel.add(textField);
 		textField.setColumns(10);
 		
-		JButton btnNewButton = new JButton("Aplicar");
-		btnNewButton.addMouseListener(new MouseAdapter() {
+		JButton btnSacar = new JButton("Sacar");
+		btnSacar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				double valoraaplicar = Double.valueOf(textField.getText());
 				int indicedaconta = cliente[indice].AcharIndice(String.valueOf(comboBox.getSelectedItem()),cliente[indice]);
-				cliente[indice].conta[indicedaconta].saldo = cliente[indice].conta[indicedaconta].saldo + valoraaplicar;
-				JOptionPane.showMessageDialog(null,"VALOR APLICADO");
+				System.out.print(cliente[indice].conta[indicedaconta].saldo);
+				double valoraaplicar = Double.valueOf(textField.getText());
+				if(((cliente[indice].conta[indicedaconta].limite + cliente[indice].conta[indicedaconta].saldo)-valoraaplicar)>=0) {
+				
+				
+				cliente[indice].conta[indicedaconta].saldo = cliente[indice].conta[indicedaconta].saldo - valoraaplicar;
+				JOptionPane.showMessageDialog(null,"VALOR SACADO");
 				AreaLogadaCliente janeladecliente = new AreaLogadaCliente(cliente,indice,gerente);
 				setVisible(false);
 				janeladecliente.setVisible(true);
+				}else {
+					JOptionPane.showMessageDialog(null,"VALOR NAO SACADO DEVIDO AO LIMITE");
+				}
 			}
 		});
-		btnNewButton.setBounds(10, 93, 284, 23);
-		panel.add(btnNewButton);
+		btnSacar.setBounds(10, 91, 284, 23);
+		panel.add(btnSacar);
 		
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addMouseListener(new MouseAdapter() {
@@ -78,9 +89,7 @@ public class AplicarDinheiro extends JFrame {
 				janeladecliente.setVisible(true);
 			}
 		});
-		btnVoltar.setBounds(10, 127, 284, 23);
+		btnVoltar.setBounds(10, 125, 284, 23);
 		panel.add(btnVoltar);
 	}
-	
-
 }

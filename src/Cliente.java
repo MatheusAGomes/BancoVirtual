@@ -5,6 +5,7 @@ public class Cliente extends Pessoas {
 	int quantidadedecontasSimples ;
 	int quantidadedecontasEspecial ;
 	int quantidadedecontasPoupanca ;
+	int quantidadedeconta;
 	Gerente SeuGerente;
 	Conta conta[] = new Conta[5];
 	
@@ -16,14 +17,17 @@ public class Cliente extends Pessoas {
 		this.quantidadedecontasEspecial = 0;
 		this.quantidadedecontasPoupanca = 0;
 		this.quantidadedecontasSimples = 0;
+		this.quantidadedeconta = 0;
 	}
 	
 	
 	public void CriarContaSimples(int numerodaconta) {
 		if(quantidadedecontasSimples<1)
 		{
-		this.conta[quantidadedecontasSimples] = new ContaSimples(numerodaconta);
+		this.conta[quantidadedeconta] = new ContaSimples(numerodaconta);
 		this.quantidadedecontasSimples = this.quantidadedecontasSimples + 1;
+		this.quantidadedeconta = this.quantidadedeconta + 1;
+		 JOptionPane.showMessageDialog(null,"CONTA CRIADA COM SUCESSO !");
 		}
 		else
 		{
@@ -35,9 +39,11 @@ public class Cliente extends Pessoas {
 	public void CriarContaEspecial(int numerodaconta) {
 		if(quantidadedecontasEspecial<2)
 		{
-			this.conta[quantidadedecontasEspecial] = new ContaEspecial(numerodaconta);
+			this.conta[quantidadedeconta] = new ContaEspecial(numerodaconta);
 			this.quantidadedecontasEspecial = this.quantidadedecontasEspecial + 1;
+			this.quantidadedeconta = this.quantidadedeconta + 1;
 
+			 JOptionPane.showMessageDialog(null,"CONTA CRIADA COM SUCESSO !");
 		}
 		else
 		{
@@ -49,9 +55,11 @@ public class Cliente extends Pessoas {
 	public void CriarContaPoupanca(int numerodaconta) {
 		if(quantidadedecontasPoupanca<=1)
 		{
-		this.conta[quantidadedecontasPoupanca] = new ContaPoupanca(numerodaconta);
+		this.conta[quantidadedeconta] = new ContaPoupanca(numerodaconta);
 		this.quantidadedecontasPoupanca = this.quantidadedecontasPoupanca + 1;
+		this.quantidadedeconta = this.quantidadedeconta + 1;
 
+		 JOptionPane.showMessageDialog(null,"CONTA CRIADA COM SUCESSO !");
 		}
 		else
 		{
@@ -91,6 +99,11 @@ public class Cliente extends Pessoas {
 		}
 		return valortotal;
 	}
+	public void AlterarSenha(String novaSenha)
+	{
+		this.senha = novaSenha;
+	}
+	
 	
 	
 

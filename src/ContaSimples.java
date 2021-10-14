@@ -8,7 +8,7 @@ public class ContaSimples extends Conta{
 		{
 		this.numerodaconta = numero;
 		this.saldo = 0;
-		this.tipodaconta = 1 ;
+		this.limite = 0;
 		this.quantidadedaconta = this.quantidadedaconta + 1;
 		}
 		else

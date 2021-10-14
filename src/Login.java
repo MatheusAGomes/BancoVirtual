@@ -113,7 +113,7 @@ public class Login extends JFrame {
 			{
 				if(SenhaObtida.equals(cliente[i].senha))
 				{
-					AreaLogadaCliente MenuDoCliente = new AreaLogadaCliente(cliente[i	]);
+					AreaLogadaCliente MenuDoCliente = new AreaLogadaCliente(cliente,i,gerentebasico);
 					this.setVisible(false);
 					MenuDoCliente.setVisible(true);
 					break;

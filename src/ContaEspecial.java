@@ -12,7 +12,7 @@ public class ContaEspecial extends Conta {
 		//this.limite = limitedogerente;
 		this.saldo = 0;
 		this.limite = 0;
-		this.tipodaconta = 2 ;
+		this.limite = 0 ;
 		this.quantidadedaconta = this.quantidadedaconta + 1;
 		}
 		else

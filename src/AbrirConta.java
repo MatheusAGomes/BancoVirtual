@@ -23,7 +23,7 @@ public class AbrirConta extends JFrame {
 	
 
 
-	public AbrirConta(Cliente cliente) {
+	public AbrirConta(Cliente cliente[],int indice,Gerente gerente[]) {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 410, 230);
@@ -41,7 +41,7 @@ public class AbrirConta extends JFrame {
 		panel.add(lblNewLabel);
 		
 		txtTitular = new JTextField();
-		txtTitular.setText(cliente.nomedapessoa);
+		txtTitular.setText(cliente[indice].nomedapessoa);
 		txtTitular.setEditable(false);
 		txtTitular.setBounds(163, 19, 201, 20);
 		panel.add(txtTitular);
@@ -75,7 +75,7 @@ public class AbrirConta extends JFrame {
 		btnCriarConta.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				CriarConta(cliente,txtNumeroDaConta.getText());
+				CriarConta(cliente,indice,gerente,txtNumeroDaConta.getText());
 			}
 		});
 		btnCriarConta.setBounds(163, 152, 201, 23);
@@ -86,32 +86,29 @@ public class AbrirConta extends JFrame {
 			Random gerador = new Random();
 			return String.valueOf((Math.abs(gerador.nextInt(10000))));
 	}
-	public void CriarConta(Cliente cliente,String NumeroemString) {
+	public void CriarConta(Cliente cliente[],int indice, Gerente gerente[],String NumeroemString) {
 		String Opção = ComboTipoConta.getSelectedItem().toString();
-		AreaLogadaCliente janelaCliente = new AreaLogadaCliente(cliente);
+		AreaLogadaCliente janelaCliente = new AreaLogadaCliente(cliente,indice,gerente);
 		int Numerodaconta = Integer.valueOf(NumeroemString);
 		
 		 switch(Opção){
 
 	        case "CONTA SIMPLES":
-	            cliente.CriarContaSimples(Numerodaconta);
+	            cliente[indice].CriarContaSimples(Numerodaconta);
 	            this.setVisible(false);
-	            JOptionPane.showMessageDialog(null,"CONTA CRIADA COM SUCESSO !");
 	            janelaCliente.setVisible(true);
 	            
 	            break;
 
 	        case "CONTA ESPECIAL":
-	        	cliente.CriarContaEspecial(Numerodaconta);
+	        	cliente[indice].CriarContaEspecial(Numerodaconta);
 	        	this.setVisible(false);
-	            JOptionPane.showMessageDialog(null,"CONTA CRIADA COM SUCESSO !");
 	            janelaCliente.setVisible(true);
 	            break;
 	            
 	        case "CONTA POUPANÇA":
-	        	cliente.CriarContaPoupanca(Numerodaconta);
+	        	cliente[indice].CriarContaPoupanca(Numerodaconta);
 	        	this.setVisible(false);
-	            JOptionPane.showMessageDialog(null,"CONTA CRIADA COM SUCESSO !");
 	            janelaCliente.setVisible(true);
 	            break;
 

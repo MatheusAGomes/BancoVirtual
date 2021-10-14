@@ -14,7 +14,7 @@ public class Extrato extends JFrame {
 
 	private JPanel contentPane;
 
-	public Extrato(Cliente cliente) {
+	public Extrato(Cliente cliente[],int indice,Gerente gerente[]) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 452, 440);
 		contentPane = new JPanel();
@@ -34,7 +34,7 @@ public class Extrato extends JFrame {
 		lblNewLabel_1.setBounds(46, 22, 46, 14);
 		panel.add(lblNewLabel_1);
 		
-		JLabel lblSaldo = new JLabel(String.valueOf(cliente.TotalSoma()));
+		JLabel lblSaldo = new JLabel(String.valueOf(cliente[indice].TotalSoma()));
 		lblSaldo.setBounds(66, 22, 105, 14);
 		panel.add(lblSaldo);
 		
@@ -42,7 +42,7 @@ public class Extrato extends JFrame {
 		btnRetornar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				AreaLogadaCliente janelaCliente = new AreaLogadaCliente(cliente);
+				AreaLogadaCliente janelaCliente = new AreaLogadaCliente(cliente,indice,gerente);
 				setVisible(false);
 				janelaCliente.setVisible(true);
 			}

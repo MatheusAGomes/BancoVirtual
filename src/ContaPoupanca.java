@@ -11,7 +11,7 @@ public class ContaPoupanca extends Conta {
 		this.numerodaconta = numero;
 		this.saldo = 0;
 		this.valoraplicado = 0;
-		this.tipodaconta = 3 ;
+		this.limite = 0 ;
 		this.quantidadedaconta = this.quantidadedaconta + 1;
 		}
 		else
