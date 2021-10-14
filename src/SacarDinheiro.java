@@ -37,8 +37,7 @@ public class SacarDinheiro extends JFrame {
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(66, 7, 228, 22);
 		panel.add(comboBox);
-		System.out.print(cliente[indice].conta[0].numerodaconta);
-		System.out.print(cliente[indice].conta[1].numerodaconta);
+		
 
 
 		while(cliente[indice].conta[i] != null)
@@ -62,12 +61,13 @@ public class SacarDinheiro extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				int indicedaconta = cliente[indice].AcharIndice(String.valueOf(comboBox.getSelectedItem()),cliente[indice]);
-				System.out.print(cliente[indice].conta[indicedaconta].saldo);
+				//System.out.print(cliente[indice].conta[indicedaconta].saldo);
 				double valoraaplicar = Double.valueOf(textField.getText());
 				if(((cliente[indice].conta[indicedaconta].limite + cliente[indice].conta[indicedaconta].saldo)-valoraaplicar)>=0) {
 				
 				
 				cliente[indice].conta[indicedaconta].saldo = cliente[indice].conta[indicedaconta].saldo - valoraaplicar;
+				cliente[indice].conta[indicedaconta].Movimentacoes(cliente[indice],valoraaplicar,2);
 				JOptionPane.showMessageDialog(null,"VALOR SACADO");
 				AreaLogadaCliente janeladecliente = new AreaLogadaCliente(cliente,indice,gerente);
 				setVisible(false);

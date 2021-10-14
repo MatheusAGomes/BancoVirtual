@@ -10,6 +10,18 @@ public class Conta {
 	
 	
 	
-
+	public void Movimentacoes(Cliente cliente,double valor,int somaousub){
+		
+		if(somaousub == 1)
+		{
+		this.Movimentações[this.quantidadedemovimentacoes] = "+"+valor;
+		}
+		else
+		{
+		this.Movimentações[this.quantidadedemovimentacoes] = "-"+valor;
+		}
+		cliente.quantidadedeacoes ++;
+		this.quantidadedemovimentacoes++;
+	}
 
 }

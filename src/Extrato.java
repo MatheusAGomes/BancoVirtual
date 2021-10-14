@@ -9,12 +9,20 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JScrollPane;
 
 public class Extrato extends JFrame {
 
 	private JPanel contentPane;
+	private JTable table;
 
 	public Extrato(Cliente cliente[],int indice,Gerente gerente[]) {
+		int i = 0;
+		int j = 0;
+		int k = 0;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 452, 440);
 		contentPane = new JPanel();
@@ -49,5 +57,34 @@ public class Extrato extends JFrame {
 		});
 		btnRetornar.setBounds(327, 357, 89, 23);
 		panel.add(btnRetornar);
+		
+		
+		DefaultTableModel tableModel = new DefaultTableModel();
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 47, 406, 306);
+		panel.add(scrollPane);
+		table = new JTable(tableModel);
+		scrollPane.setViewportView(table);
+		tableModel.addColumn("Conta");
+		tableModel.addColumn("Acoes");
+		System.out.print(cliente[indice].conta[1].Movimentações[0]);
+		while(i <= cliente[indice].quantidadedeacoes)
+		{
+			while(cliente[indice].conta[j] != null) {
+				k = 0;
+					while(cliente[indice].conta[j].Movimentações[k] != null)
+					{
+						tableModel.insertRow(i, new Object[] {cliente[indice].conta[j].numerodaconta,cliente[indice].conta[j].Movimentações[k]});
+						k++;
+					}
+			   j++;
+			}
+			i++;
+		}
+		
+		
+			
+		
 	}
 }

@@ -6,6 +6,7 @@ public class Cliente extends Pessoas {
 	int quantidadedecontasEspecial ;
 	int quantidadedecontasPoupanca ;
 	int quantidadedeconta;
+	int quantidadedeacoes;
 	Gerente SeuGerente;
 	Conta conta[] = new Conta[5];
 	
