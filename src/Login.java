@@ -88,15 +88,18 @@ public class Login extends JFrame {
 
 	
 		
-		
 		try {
+	
 			//GERENTE
 			while(i < 21)
 			{
 		if(Opção.equals(Gerente))
 		{
+			//System.out.print(gerentebasico[i].nomedapessoa);
 			if(UsernameObtido.equals(gerentebasico[i].nomedapessoa))
 			{
+				//System.out.print(gerentebasico[i].senha);
+
 				if(SenhaObtida.equals(gerentebasico[i].senha))
 				{
 					AreaLogadaGerente MenuDoGerente = new AreaLogadaGerente(gerentebasico,i,cliente);
@@ -109,12 +112,17 @@ public class Login extends JFrame {
 		}
 		if(Opção.equals(Cliente))
 		{
+
 			if(UsernameObtido.equals(cliente[i].nomedapessoa))
 			{
+				
+				System.out.print(cliente[i].nomedapessoa);
+				System.out.print(cliente[i].senha);
 				if(SenhaObtida.equals(cliente[i].senha))
 				{
+					
 					AreaLogadaCliente MenuDoCliente = new AreaLogadaCliente(cliente,i,gerentebasico);
-					this.setVisible(false);
+					setVisible(false);
 					MenuDoCliente.setVisible(true);
 					break;
 					
@@ -128,9 +136,11 @@ public class Login extends JFrame {
 			
 			}
 		}
-		catch(Exception e) {
-			JOptionPane.showMessageDialog(null,"Username ou senha incorretos");
-		}
+		catch (Exception e) {JOptionPane.showMessageDialog(null,"Username ou senha incorretos");}
+		
+		
+			
+		
 			
 		
 	

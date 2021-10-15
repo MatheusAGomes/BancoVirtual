@@ -9,11 +9,11 @@ public class ContaEspecial extends Conta {
 		if(this.quantidadedaconta < 3)
 		{
 		this.numerodaconta = numero;
-		//this.limite = limitedogerente;
 		this.saldo = 0;
 		this.limite = 0;
 		this.limite = 0 ;
 		this.quantidadedaconta = this.quantidadedaconta + 1;
+		this.tipodeconta=2;
 		}
 		else
 		{

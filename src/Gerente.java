@@ -1,12 +1,10 @@
 
 public class Gerente extends Pessoas {
-	String senha;
 	int quantidadedeclientes;
 	Cliente seuCliente[] = new Cliente[5];
 
 	public Gerente(String nome,String senha) {
-		super(nome);
-		this.senha = senha;
+		super(nome,senha);
 		this.quantidadedeclientes = 0;
 	}
 	

@@ -1,7 +1,6 @@
 import javax.swing.JOptionPane;
 
 public class Cliente extends Pessoas {
-	String senha;
 	int quantidadedecontasSimples ;
 	int quantidadedecontasEspecial ;
 	int quantidadedecontasPoupanca ;
@@ -12,8 +11,7 @@ public class Cliente extends Pessoas {
 	
 			
 	public Cliente(String nome,String senha,Gerente Gerente) {
-		super(nome);
-		this.senha = senha;
+		super(nome,senha);
 		this.SeuGerente = Gerente;
 		this.quantidadedecontasEspecial = 0;
 		this.quantidadedecontasPoupanca = 0;

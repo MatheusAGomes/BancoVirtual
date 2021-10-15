@@ -69,7 +69,7 @@ public class AbrirConta extends JFrame {
 		ComboTipoConta.addItem(" ");
 		ComboTipoConta.addItem("CONTA SIMPLES");
 		ComboTipoConta.addItem("CONTA ESPECIAL");
-		ComboTipoConta.addItem("CONTA POUPANÇA");
+		ComboTipoConta.addItem("CONTA POUPANCA");
 		
 		JButton btnCriarConta = new JButton("Criar conta");
 		btnCriarConta.addMouseListener(new MouseAdapter() {
@@ -80,6 +80,7 @@ public class AbrirConta extends JFrame {
 		});
 		btnCriarConta.setBounds(163, 152, 201, 23);
 		panel.add(btnCriarConta);
+		setVisible(true);
 	}
 	
 	public String numeroAleatorio() {
@@ -87,33 +88,37 @@ public class AbrirConta extends JFrame {
 			return String.valueOf((Math.abs(gerador.nextInt(10000))));
 	}
 	public void CriarConta(Cliente cliente[],int indice, Gerente gerente[],String NumeroemString) {
-		String Opção = ComboTipoConta.getSelectedItem().toString();
-		AreaLogadaCliente janelaCliente = new AreaLogadaCliente(cliente,indice,gerente);
+		String Opcao = ComboTipoConta.getSelectedItem().toString();
+	//	AreaLogadaCliente janelaCliente = new AreaLogadaCliente(cliente,indice,gerente);
 		int Numerodaconta = Integer.valueOf(NumeroemString);
+		//colocando um em cada para poder atualizar com o valor novo
 		
-		 switch(Opção){
+		 switch(Opcao){
 
 	        case "CONTA SIMPLES":
 	            cliente[indice].CriarContaSimples(Numerodaconta);
 	            this.setVisible(false);
-	            janelaCliente.setVisible(true);
+	    		AreaLogadaCliente janelaCliente1 = new AreaLogadaCliente(cliente,indice,gerente);
+	            janelaCliente1.setVisible(true);
 	            
 	            break;
 
 	        case "CONTA ESPECIAL":
 	        	cliente[indice].CriarContaEspecial(Numerodaconta);
 	        	this.setVisible(false);
-	            janelaCliente.setVisible(true);
+	    		AreaLogadaCliente janelaCliente2 = new AreaLogadaCliente(cliente,indice,gerente);
+	            janelaCliente2.setVisible(true);
 	            break;
 	            
-	        case "CONTA POUPANÇA":
+	        case "CONTA POUPANCA":
 	        	cliente[indice].CriarContaPoupanca(Numerodaconta);
+	    		AreaLogadaCliente janelaCliente3 = new AreaLogadaCliente(cliente,indice,gerente);
 	        	this.setVisible(false);
-	            janelaCliente.setVisible(true);
+	            janelaCliente3.setVisible(true);
 	            break;
 
 	        default:
-	            JOptionPane.showMessageDialog(null,"Opção de conta inválida");
+	            JOptionPane.showMessageDialog(null,"Opcao de conta invï¿½lida");
 
 
 	    }

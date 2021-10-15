@@ -10,6 +10,7 @@ public class ContaSimples extends Conta{
 		this.saldo = 0;
 		this.limite = 0;
 		this.quantidadedaconta = this.quantidadedaconta + 1;
+		this.tipodeconta=1;
 		}
 		else
 		{

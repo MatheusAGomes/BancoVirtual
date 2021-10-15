@@ -68,7 +68,6 @@ public class Extrato extends JFrame {
 		scrollPane.setViewportView(table);
 		tableModel.addColumn("Conta");
 		tableModel.addColumn("Acoes");
-		System.out.print(cliente[indice].conta[1].Movimentações[0]);
 		while(i <= cliente[indice].quantidadedeacoes)
 		{
 			while(cliente[indice].conta[j] != null) {
