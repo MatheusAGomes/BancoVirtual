@@ -17,7 +17,7 @@ public class AplicarDinheiro extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 
-	public AplicarDinheiro(Cliente cliente[],int indice,Gerente gerente[]) {
+	public AplicarDinheiro(int indicedocliente,Gerente gerente[],int indicedogerente) {
 		int i = 0;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 330, 220);
@@ -37,9 +37,9 @@ public class AplicarDinheiro extends JFrame {
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(66, 7, 228, 22);
 		panel.add(comboBox);
-		while(cliente[indice].conta[i] != null)
+		while(gerente[indicedogerente].seuCliente[indicedocliente].conta[i] != null)
 		{
-			comboBox.addItem(cliente[indice].conta[i].numerodaconta);
+			comboBox.addItem(gerente[indicedogerente].seuCliente[indicedocliente].conta[i].numerodaconta);
 			
 			i++;
 		}
@@ -58,11 +58,11 @@ public class AplicarDinheiro extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				double valoraaplicar = Double.valueOf(textField.getText());
-				int indicedaconta = cliente[indice].AcharIndice(String.valueOf(comboBox.getSelectedItem()),cliente[indice]);
-				cliente[indice].conta[indicedaconta].saldo = cliente[indice].conta[indicedaconta].saldo + valoraaplicar;
-				cliente[indice].conta[indicedaconta].Movimentacoes(cliente[indice],valoraaplicar,1);
+				int indicedaconta = gerente[indicedogerente].seuCliente[indicedocliente].AcharIndice(String.valueOf(comboBox.getSelectedItem()),gerente[indicedogerente].seuCliente[indicedocliente]);
+				gerente[indicedogerente].seuCliente[indicedocliente].conta[indicedaconta].saldo = gerente[indicedogerente].seuCliente[indicedocliente].conta[indicedaconta].saldo + valoraaplicar;
+				gerente[indicedogerente].seuCliente[indicedocliente].conta[indicedaconta].Movimentacoes(gerente[indicedogerente].seuCliente[indicedocliente],valoraaplicar,1);
 				JOptionPane.showMessageDialog(null,"VALOR APLICADO");
-				AreaLogadaCliente janeladecliente = new AreaLogadaCliente(cliente,indice,gerente);
+				AreaLogadaCliente janeladecliente = new AreaLogadaCliente(indicedocliente,gerente,indicedogerente);
 				setVisible(false);
 				janeladecliente.setVisible(true);
 			}
@@ -74,7 +74,7 @@ public class AplicarDinheiro extends JFrame {
 		btnVoltar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				AreaLogadaCliente janeladecliente = new AreaLogadaCliente(cliente,indice,gerente);
+				AreaLogadaCliente janeladecliente = new AreaLogadaCliente(indicedocliente,gerente,indicedogerente);
 				setVisible(false);
 				janeladecliente.setVisible(true);
 			}

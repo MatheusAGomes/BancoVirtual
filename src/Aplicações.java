@@ -19,7 +19,7 @@ public class Aplicações extends JFrame {
 	private JPanel contentPane;
 	private JTable table;
 
-	public Aplicações(Cliente cliente[], int indice, Gerente gerente[]) {
+	public Aplicações(int indicedocliente,Gerente gerente[],int indicedogerente) {
 		int i = 0;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 529);
@@ -35,11 +35,11 @@ public class Aplicações extends JFrame {
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(66, 7, 141, 22);
 		contentPane.add(comboBox);
-		while(cliente[indice].conta[i] != null)
+		while(gerente[indicedogerente].seuCliente[indicedocliente].conta[i] != null)
 		{
-			if(cliente[indice].conta[i].tipodeconta == 3)
+			if(gerente[indicedogerente].seuCliente[indicedocliente].conta[i].tipodeconta == 3)
 			{
-				comboBox.addItem(cliente[indice].conta[i].numerodaconta);
+				comboBox.addItem(gerente[indicedogerente].seuCliente[indicedocliente].conta[i].numerodaconta);
 			}
 			i++;
 		}
@@ -48,7 +48,7 @@ public class Aplicações extends JFrame {
 		lblNewLabel_1.setBounds(20, 36, 66, 14);
 		contentPane.add(lblNewLabel_1);
 		
-		JLabel lblSaldo = new JLabel(String.valueOf(cliente[indice].conta[cliente[indice].AcharIndice(comboBox.getSelectedItem().toString(),cliente[indice])].saldo));
+		JLabel lblSaldo = new JLabel(String.valueOf(gerente[indicedogerente].seuCliente[indicedocliente].conta[gerente[indicedogerente].seuCliente[indicedocliente].AcharIndice(comboBox.getSelectedItem().toString(),gerente[indicedogerente].seuCliente[indicedocliente])].saldo));
 		lblSaldo.setBounds(106, 36, 121, 14);
 		contentPane.add(lblSaldo);
 		
@@ -70,7 +70,7 @@ public class Aplicações extends JFrame {
 		lblNewLabel_3.setBounds(256, 36, 46, 14);
 		contentPane.add(lblNewLabel_3);
 		
-		JLabel lblTaxa = new JLabel(String.valueOf(cliente[indice].conta[cliente[indice].AcharIndice(comboBox.getSelectedItem().toString(),cliente[indice])].taxa));
+		JLabel lblTaxa = new JLabel(String.valueOf(gerente[indicedogerente].seuCliente[indicedocliente].conta[gerente[indicedogerente].seuCliente[indicedocliente].AcharIndice(comboBox.getSelectedItem().toString(),gerente[indicedogerente].seuCliente[indicedocliente])].taxa));
 		lblTaxa.setBounds(312, 36, 112, 14);
 		contentPane.add(lblTaxa);
 		
@@ -78,7 +78,7 @@ public class Aplicações extends JFrame {
 		btnVoltar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				AreaLogadaCliente janelaCliente = new AreaLogadaCliente(cliente,indice,gerente);
+				AreaLogadaCliente janelaCliente = new AreaLogadaCliente(indicedocliente,gerente,indicedogerente);
 				janelaCliente.setVisible(true);
 				setVisible(false);
 			}
@@ -90,7 +90,7 @@ public class Aplicações extends JFrame {
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				MostrarRendimentos(cliente,indice,gerente,tableModel,comboBox,lblTaxa,lblSaldo,table);
+				MostrarRendimentos(gerente,indicedogerente,indicedocliente,tableModel,comboBox,lblTaxa,lblSaldo,table);
 			}
 		});
 		btnNewButton.setBounds(217, 7, 141, 23);
@@ -98,17 +98,17 @@ public class Aplicações extends JFrame {
 	}
 	
 	
-	public void MostrarRendimentos(Cliente cliente[], int indice, Gerente gerente[],DefaultTableModel tableModel,JComboBox comboBox,JLabel lblTaxa, JLabel lblSaldo,JTable table){
+	public void MostrarRendimentos(Gerente gerente[], int indicedogerente,int indicedocliente,DefaultTableModel tableModel,JComboBox comboBox,JLabel lblTaxa, JLabel lblSaldo,JTable table){
 		int i = 0;
 		
 		((DefaultTableModel)table.getModel()).setNumRows(0);
 		
 		
-		int indicedaconta = cliente[indice].AcharIndice(comboBox.getSelectedItem().toString(),cliente[indice]);
-		double taxaaomes = (cliente[indice].conta[indicedaconta].taxa)/12;
-		double montante = (cliente[indice].conta[indicedaconta].saldo);
-		lblTaxa.setText(String.valueOf(cliente[indice].conta[indicedaconta].taxa));
-		lblSaldo.setText(String.valueOf(cliente[indice].conta[indicedaconta].saldo));
+		int indicedaconta = gerente[indicedogerente].seuCliente[indicedocliente].AcharIndice(comboBox.getSelectedItem().toString(),gerente[indicedogerente].seuCliente[indicedocliente]);
+		double taxaaomes = (gerente[indicedogerente].seuCliente[indicedocliente].conta[indicedaconta].taxa)/12;
+		double montante = (gerente[indicedogerente].seuCliente[indicedocliente].conta[indicedaconta].saldo);
+		lblTaxa.setText(String.valueOf(gerente[indicedogerente].seuCliente[indicedocliente].conta[indicedaconta].taxa));
+		lblSaldo.setText(String.valueOf(gerente[indicedogerente].seuCliente[indicedocliente].conta[indicedaconta].saldo));
 		
 		
 		

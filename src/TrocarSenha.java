@@ -20,7 +20,7 @@ public class TrocarSenha extends JFrame {
 	private JPasswordField passwordNovaSenha;
 	private JPasswordField passwordConfirmeASenha;
 
-	public TrocarSenha(Pessoas pessoa,Cliente cliente[],int indice,Gerente gerente[]) {
+	public TrocarSenha(Pessoas pessoa,Gerente gerente[],int indicedogerente,int indicedocliente) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 380, 210);
 		contentPane = new JPanel();
@@ -48,7 +48,7 @@ public class TrocarSenha extends JFrame {
 		btnAlterarSenha.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Alterar(cliente[indice],passwordAntigaSenha,passwordNovaSenha,passwordConfirmeASenha);
+				Alterar(gerente[indicedogerente].seuCliente[indicedocliente],passwordAntigaSenha,passwordNovaSenha,passwordConfirmeASenha);
 				passwordAntigaSenha.setText("");
 				passwordNovaSenha.setText("");
 				passwordConfirmeASenha.setText("");
@@ -62,7 +62,7 @@ public class TrocarSenha extends JFrame {
 		btnVoltar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				AreaLogadaCliente janelaCliente = new AreaLogadaCliente(cliente,indice,gerente);
+				AreaLogadaCliente janelaCliente = new AreaLogadaCliente(indicedocliente,gerente,indicedogerente);
 				setVisible(false);
 				janelaCliente.setVisible(true);
 			}

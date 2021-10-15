@@ -23,7 +23,7 @@ public class AbrirConta extends JFrame {
 	
 
 
-	public AbrirConta(Cliente cliente[],int indice,Gerente gerente[]) {
+	public AbrirConta(int indicedocliente,Gerente gerente[],int indicedogerente) {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 410, 230);
@@ -41,7 +41,7 @@ public class AbrirConta extends JFrame {
 		panel.add(lblNewLabel);
 		
 		txtTitular = new JTextField();
-		txtTitular.setText(cliente[indice].nomedapessoa);
+		txtTitular.setText(gerente[indicedogerente].seuCliente[indicedocliente].nomedapessoa);
 		txtTitular.setEditable(false);
 		txtTitular.setBounds(163, 19, 201, 20);
 		panel.add(txtTitular);
@@ -75,7 +75,7 @@ public class AbrirConta extends JFrame {
 		btnCriarConta.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				CriarConta(cliente,indice,gerente,txtNumeroDaConta.getText());
+				CriarConta(gerente,indicedogerente,indicedocliente,txtNumeroDaConta.getText());
 			}
 		});
 		btnCriarConta.setBounds(163, 152, 201, 23);
@@ -87,7 +87,7 @@ public class AbrirConta extends JFrame {
 			Random gerador = new Random();
 			return String.valueOf((Math.abs(gerador.nextInt(10000))));
 	}
-	public void CriarConta(Cliente cliente[],int indice, Gerente gerente[],String NumeroemString) {
+	public void CriarConta(Gerente gerente[],int indicedogerente,int indicedocliente,String NumeroemString) {
 		String Opcao = ComboTipoConta.getSelectedItem().toString();
 	//	AreaLogadaCliente janelaCliente = new AreaLogadaCliente(cliente,indice,gerente);
 		int Numerodaconta = Integer.valueOf(NumeroemString);
@@ -96,23 +96,23 @@ public class AbrirConta extends JFrame {
 		 switch(Opcao){
 
 	        case "CONTA SIMPLES":
-	            cliente[indice].CriarContaSimples(Numerodaconta);
+	        	gerente[indicedogerente].seuCliente[indicedocliente].CriarContaSimples(Numerodaconta);
 	            this.setVisible(false);
-	    		AreaLogadaCliente janelaCliente1 = new AreaLogadaCliente(cliente,indice,gerente);
+	    		AreaLogadaCliente janelaCliente1 = new AreaLogadaCliente(indicedocliente,gerente,indicedogerente);
 	            janelaCliente1.setVisible(true);
 	            
 	            break;
 
 	        case "CONTA ESPECIAL":
-	        	cliente[indice].CriarContaEspecial(Numerodaconta);
+	        	gerente[indicedogerente].seuCliente[indicedocliente].CriarContaEspecial(Numerodaconta);
 	        	this.setVisible(false);
-	    		AreaLogadaCliente janelaCliente2 = new AreaLogadaCliente(cliente,indice,gerente);
+	    		AreaLogadaCliente janelaCliente2 = new AreaLogadaCliente(indicedocliente,gerente,indicedogerente);
 	            janelaCliente2.setVisible(true);
 	            break;
 	            
 	        case "CONTA POUPANCA":
-	        	cliente[indice].CriarContaPoupanca(Numerodaconta);
-	    		AreaLogadaCliente janelaCliente3 = new AreaLogadaCliente(cliente,indice,gerente);
+	        	gerente[indicedogerente].seuCliente[indicedocliente].CriarContaPoupanca(Numerodaconta);
+	    		AreaLogadaCliente janelaCliente3 = new AreaLogadaCliente(indicedocliente,gerente,indicedogerente);
 	        	this.setVisible(false);
 	            janelaCliente3.setVisible(true);
 	            break;

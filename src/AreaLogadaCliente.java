@@ -17,7 +17,7 @@ public class AreaLogadaCliente extends JFrame {
 
 	private JPanel contentPane;
 	
-	public AreaLogadaCliente(Cliente cliente[],int indice,Gerente gerente[]) {
+	public AreaLogadaCliente(int indicedocliente,Gerente gerente[],int indicedogerente) {
 		int i = 0;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 520, 330);
@@ -34,7 +34,7 @@ public class AreaLogadaCliente extends JFrame {
 		lblNewLabel.setBounds(10, 11, 46, 14);
 		panel.add(lblNewLabel);
 		
-		JLabel lblNomeDoCliente = new JLabel(cliente[indice].nomedapessoa);
+		JLabel lblNomeDoCliente = new JLabel(gerente[indicedogerente].seuCliente[indicedocliente].nomedapessoa);
 		lblNomeDoCliente.setBounds(40, 11, 110, 14);
 		panel.add(lblNomeDoCliente);
 		
@@ -43,7 +43,7 @@ public class AreaLogadaCliente extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				setVisible(false);
-				AbrirConta janelaAbrirConta = new AbrirConta(cliente,indice,gerente);
+				AbrirConta janelaAbrirConta = new AbrirConta(indicedocliente,gerente,indicedogerente);
 				janelaAbrirConta.setVisible(true);
 				
 			}
@@ -55,7 +55,7 @@ public class AreaLogadaCliente extends JFrame {
 		btnAplicarDinheiro.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				AplicarDinheiro janelaDeAplicarDinheiro = new AplicarDinheiro(cliente,indice,gerente);
+				AplicarDinheiro janelaDeAplicarDinheiro = new AplicarDinheiro(indicedocliente,gerente,indicedogerente);
 				setVisible(false);
 				janelaDeAplicarDinheiro.setVisible(true);
 			}
@@ -67,7 +67,7 @@ public class AreaLogadaCliente extends JFrame {
 		btnAlterarSenha.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				TrocarSenha janelatrocar = new TrocarSenha(cliente[indice],cliente,indice,gerente);
+				TrocarSenha janelatrocar = new TrocarSenha(gerente[indicedogerente].seuCliente[indicedocliente],gerente,indicedogerente,indicedocliente);
 				setVisible(false);
 				janelatrocar.setVisible(true);
 			}
@@ -79,7 +79,7 @@ public class AreaLogadaCliente extends JFrame {
 		btnSacar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				SacarDinheiro janelaDeSacarDinheiro = new SacarDinheiro(cliente,indice,gerente);
+				SacarDinheiro janelaDeSacarDinheiro = new SacarDinheiro(indicedocliente,gerente,indicedogerente);
 				setVisible(false);
 				janelaDeSacarDinheiro.setVisible(true);
 			}
@@ -91,7 +91,7 @@ public class AreaLogadaCliente extends JFrame {
 		btnExtrato.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Extrato janelaExtrato = new Extrato(cliente,indice,gerente);
+				Extrato janelaExtrato = new Extrato(indicedocliente,gerente,indicedogerente);
 				setVisible(false);
 				janelaExtrato.setVisible(true);
 			}
@@ -103,7 +103,7 @@ public class AreaLogadaCliente extends JFrame {
 		btnSair.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Login janeladeLogin	= new Login(gerente,cliente);
+				Login janeladeLogin	= new Login(gerente);
 				setVisible(false);
 				janeladeLogin.setVisible(true);
 			}
@@ -117,12 +117,12 @@ public class AreaLogadaCliente extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				int j = 0;
 				try {
-				while(cliente[indice].conta[j] != null)
+				while(gerente[indicedogerente].seuCliente[indicedocliente].conta[j] != null)
 				{
 					
-					if(cliente[indice].conta[j].tipodeconta == 3)
+					if(gerente[indicedogerente].seuCliente[indicedocliente].conta[j].tipodeconta == 3)
 					{
-						Aplicações janeladeaplicações = new Aplicações(cliente,indice,gerente);
+						Aplicações janeladeaplicações = new Aplicações(indicedocliente,gerente,indicedogerente);
 						janeladeaplicações.setVisible(true);
 						setVisible(false);
 						break;
@@ -146,24 +146,24 @@ public class AreaLogadaCliente extends JFrame {
 		
 		
 		
-		while(cliente[indice].conta[i] != null)
+		while(gerente[indicedogerente].seuCliente[indicedocliente].conta[i] != null)
 		{
 			
-				comboBox.addItem(cliente[indice].conta[i].numerodaconta);
+				comboBox.addItem(gerente[indicedogerente].seuCliente[indicedocliente].conta[i].numerodaconta);
 			
 			i++;
 		}
 		
 		if(comboBox.getSelectedItem() != null) {
 			panel.add(comboBox);
-		Conta contacliente = cliente[indice].conta[cliente[indice].AcharIndice(comboBox.getSelectedItem().toString(),cliente[indice])];
+		Conta contacliente = gerente[indicedogerente].seuCliente[indicedocliente].conta[gerente[indicedogerente].seuCliente[indicedocliente].AcharIndice(comboBox.getSelectedItem().toString(),gerente[indicedogerente].seuCliente[indicedocliente])];
 		
 
 		JLabel lblNewLabel_1 = new JLabel("Saldo total");
 		lblNewLabel_1.setBounds(196, 142, 110, 14);
 		panel.add(lblNewLabel_1);
 		
-		JLabel lblSaldoTotal = new JLabel(String.valueOf(cliente[indice].TotalSoma()));
+		JLabel lblSaldoTotal = new JLabel(String.valueOf(gerente[indicedogerente].seuCliente[indicedocliente].TotalSoma()));
 		lblSaldoTotal.setBounds(301, 142, 186, 14);
 		panel.add(lblSaldoTotal);
 		
@@ -190,7 +190,7 @@ public class AreaLogadaCliente extends JFrame {
 		btnTrocarConta.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				mudarValores(cliente[indice],lblSaldoDaConta,lblSaldoLimite,comboBox);
+				mudarValores(gerente[indicedogerente].seuCliente[indicedocliente],lblSaldoDaConta,lblSaldoLimite,comboBox);
 			}
 		});
 		btnTrocarConta.setBounds(377, 36, 110, 23);

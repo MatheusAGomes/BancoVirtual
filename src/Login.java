@@ -20,7 +20,7 @@ public class Login extends JFrame {
 	private JLabel lblSenha;
 	private JTextField txtSenha;
 
-	public Login(Gerente gerentebasico[],Cliente cliente[]) {
+	public Login(Gerente gerentebasico[]) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 320, 345);
 		contentPane = new JPanel();
@@ -65,7 +65,7 @@ public class Login extends JFrame {
 		btnLogar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Logar(gerentebasico,cliente,comboBox);
+				Logar(gerentebasico,comboBox);
 			}
 		});
 		btnLogar.setBounds(32, 207, 225, 23);
@@ -76,9 +76,10 @@ public class Login extends JFrame {
 		panel.add(btnLimpar);
 	}
 	
-	public void Logar(Gerente gerentebasico[],Cliente cliente[],JComboBox comboBox) {
+	public void Logar(Gerente gerentebasico[],JComboBox comboBox) {
 		
 		int i = 0;
+		int j = 0;
 		
 		String Opção = comboBox.getSelectedItem().toString();
 		String Gerente = "GERENTE";
@@ -102,7 +103,7 @@ public class Login extends JFrame {
 
 				if(SenhaObtida.equals(gerentebasico[i].senha))
 				{
-					AreaLogadaGerente MenuDoGerente = new AreaLogadaGerente(gerentebasico,i,cliente);
+					AreaLogadaGerente MenuDoGerente = new AreaLogadaGerente(gerentebasico,i);
 					this.setVisible(false);
 					MenuDoGerente.setVisible(true);
 					break;
@@ -111,22 +112,25 @@ public class Login extends JFrame {
 			}
 		}
 		if(Opção.equals(Cliente))
-		{
-
-			if(UsernameObtido.equals(cliente[i].nomedapessoa))
+		{	
+			while(j<21)
+			{
+			if(UsernameObtido.equals(gerentebasico[i].seuCliente[j].nomedapessoa))
 			{
 				
-				System.out.print(cliente[i].nomedapessoa);
-				System.out.print(cliente[i].senha);
-				if(SenhaObtida.equals(cliente[i].senha))
+				System.out.print(gerentebasico[i].seuCliente[j].nomedapessoa);
+				System.out.print(gerentebasico[i].seuCliente[j].senha);
+				if(SenhaObtida.equals(gerentebasico[i].seuCliente[j].senha))
 				{
 					
-					AreaLogadaCliente MenuDoCliente = new AreaLogadaCliente(cliente,i,gerentebasico);
+					AreaLogadaCliente MenuDoCliente = new AreaLogadaCliente(i,gerentebasico,j);
 					setVisible(false);
 					MenuDoCliente.setVisible(true);
 					break;
 					
 				}
+			}
+			j++;
 			}
 		}
 		

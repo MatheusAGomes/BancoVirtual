@@ -6,13 +6,11 @@ public class Cliente extends Pessoas {
 	int quantidadedecontasPoupanca ;
 	int quantidadedeconta;
 	int quantidadedeacoes;
-	Gerente SeuGerente;
 	Conta conta[] = new Conta[5];
 	
 			
 	public Cliente(String nome,String senha,Gerente Gerente) {
 		super(nome,senha);
-		this.SeuGerente = Gerente;
 		this.quantidadedecontasEspecial = 0;
 		this.quantidadedecontasPoupanca = 0;
 		this.quantidadedecontasSimples = 0;
@@ -84,6 +82,8 @@ public class Cliente extends Pessoas {
 		}
 		return valorencontrado;
 	}
+	
+	
 	public double TotalSoma()
 	{
 		double valortotal = 0;

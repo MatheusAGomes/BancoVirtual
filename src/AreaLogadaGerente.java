@@ -17,7 +17,7 @@ public class AreaLogadaGerente extends JFrame {
 	private JPanel contentPane;
 
 
-	public AreaLogadaGerente(Gerente gerente[],int indice,Cliente cliente[]) {
+	public AreaLogadaGerente(Gerente gerente[],int indicedogerente) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 452, 390);
 		contentPane = new JPanel();
@@ -34,7 +34,7 @@ public class AreaLogadaGerente extends JFrame {
 		lblNewLabel.setBounds(10, 11, 104, 14);
 		panel.add(lblNewLabel);
 		
-		JLabel lblNomeDoGerente = new JLabel(gerente[indice].nomedapessoa);
+		JLabel lblNomeDoGerente = new JLabel(gerente[indicedogerente].nomedapessoa);
 		lblNomeDoGerente.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblNomeDoGerente.setBounds(41, 11, 82, 14);
 		panel.add(lblNomeDoGerente);
@@ -44,7 +44,7 @@ public class AreaLogadaGerente extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				setVisible(false);
-				VerificarContasDeClientes menudeverificacao = new VerificarContasDeClientes(gerente[indice]);
+				VerificarContasDeClientes menudeverificacao = new VerificarContasDeClientes(indicedogerente,gerente);
 				menudeverificacao.setVisible(true);
 				
 			}
@@ -77,7 +77,7 @@ public class AreaLogadaGerente extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				setVisible(false);
-				CadastroDeCliente CadastroCliente = new CadastroDeCliente(gerente,indice,cliente);
+				CadastroDeCliente CadastroCliente = new CadastroDeCliente(gerente,indicedogerente);
 				CadastroCliente.setVisible(true);
 			}
 		});
@@ -88,7 +88,7 @@ public class AreaLogadaGerente extends JFrame {
 		btnAlterarsuaSenha.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				gerente[indice].AlterarSenha(JOptionPane.showInputDialog("Nova senha: "));
+				gerente[indicedogerente].AlterarSenha(JOptionPane.showInputDialog("Nova senha: "));
 			}
 		});
 		btnAlterarsuaSenha.setBounds(10, 297, 170, 23);
@@ -99,7 +99,7 @@ public class AreaLogadaGerente extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				setVisible(false);
-				Login teladelogin = new Login(gerente,cliente);
+				Login teladelogin = new Login(gerente);
 				teladelogin.setVisible(true);
 			}
 		});

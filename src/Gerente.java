@@ -10,7 +10,7 @@ public class Gerente extends Pessoas {
 	
 	public void AgregarCliente(Cliente novoCliente)
 	{
-		this.seuCliente[quantidadedeclientes] = novoCliente;
+		this.seuCliente[this.quantidadedeclientes] = novoCliente;
 		this.quantidadedeclientes = this.quantidadedeclientes + 1;
 	}
 	
@@ -19,6 +19,25 @@ public class Gerente extends Pessoas {
 		
 		
 		this.senha = novaSenha;
+	}
+	public int AcharIndicePeloNome(String Nome,Gerente gerente){
+		int i=0;
+		int valorencontrado=0;
+		String NomeaSerEncontrado = Nome;
+		while(gerente.seuCliente[i] != null)
+		{
+			
+			String NomeTestado  = gerente.seuCliente[i].nomedapessoa;
+			
+			if(NomeTestado.equals(NomeaSerEncontrado))
+			{
+					valorencontrado = i;
+			
+			
+			}
+			i++;
+		}
+		return valorencontrado;
 	}
 	
 

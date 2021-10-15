@@ -18,7 +18,7 @@ public class CadastroDeCliente extends JFrame {
 	private JTextField txtSenha;
 
 	
-	public CadastroDeCliente(Gerente gerente[],int indice,Cliente cliente[]) {
+	public CadastroDeCliente(Gerente gerente[],int indice) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 380, 240);
 		contentPane = new JPanel();
@@ -52,21 +52,20 @@ public class CadastroDeCliente extends JFrame {
 		btnCadastrarCliente.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				CadastrarCliente(gerente,indice,cliente);
+				CadastrarCliente(gerente,indice);
 			}
 		});
 		btnCadastrarCliente.setBounds(47, 107, 261, 23);
 		panel.add(btnCadastrarCliente);
 	}
 	
-	public void CadastrarCliente(Gerente gerente[],int indice,Cliente cliente[]) {
+	public void CadastrarCliente(Gerente gerente[],int indice) {
 		
-		int quantidadedeclientes = gerente[indice].quantidadedeclientes;
-		cliente[quantidadedeclientes] = new Cliente(txtNome.getText(),txtSenha.getText(),gerente[indice]);
-		gerente[indice].AgregarCliente(cliente[quantidadedeclientes]);
+		Cliente novocliente = new Cliente(txtNome.getText(),txtSenha.getText(),gerente[indice]);
+		gerente[indice].AgregarCliente(novocliente);
 		gerente[indice].quantidadedeclientes = gerente[indice].quantidadedeclientes + 1;
 		this.setVisible(false);
-		AreaLogadaGerente MenuDoGerente = new AreaLogadaGerente(gerente,indice,cliente);
+		AreaLogadaGerente MenuDoGerente = new AreaLogadaGerente(gerente,indice);
 		MenuDoGerente.setVisible(true);
 
 		

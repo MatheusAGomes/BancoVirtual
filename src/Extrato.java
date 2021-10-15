@@ -19,7 +19,7 @@ public class Extrato extends JFrame {
 	private JPanel contentPane;
 	private JTable table;
 
-	public Extrato(Cliente cliente[],int indice,Gerente gerente[]) {
+	public Extrato(int indicedocliente,Gerente gerente[],int indicedogerente) {
 		int i = 0;
 		int j = 0;
 		int k = 0;
@@ -42,7 +42,7 @@ public class Extrato extends JFrame {
 		lblNewLabel_1.setBounds(46, 22, 46, 14);
 		panel.add(lblNewLabel_1);
 		
-		JLabel lblSaldo = new JLabel(String.valueOf(cliente[indice].TotalSoma()));
+		JLabel lblSaldo = new JLabel(String.valueOf(gerente[indicedogerente].seuCliente[indicedocliente].TotalSoma()));
 		lblSaldo.setBounds(66, 22, 105, 14);
 		panel.add(lblSaldo);
 		
@@ -50,7 +50,7 @@ public class Extrato extends JFrame {
 		btnRetornar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				AreaLogadaCliente janelaCliente = new AreaLogadaCliente(cliente,indice,gerente);
+				AreaLogadaCliente janelaCliente = new AreaLogadaCliente(indicedocliente,gerente,indicedogerente);
 				setVisible(false);
 				janelaCliente.setVisible(true);
 			}
@@ -68,13 +68,13 @@ public class Extrato extends JFrame {
 		scrollPane.setViewportView(table);
 		tableModel.addColumn("Conta");
 		tableModel.addColumn("Acoes");
-		while(i <= cliente[indice].quantidadedeacoes)
+		while(i <= gerente[indicedogerente].seuCliente[indicedocliente].quantidadedeacoes)
 		{
-			while(cliente[indice].conta[j] != null) {
+			while(gerente[indicedogerente].seuCliente[indicedocliente].conta[j] != null) {
 				k = 0;
-					while(cliente[indice].conta[j].Movimentações[k] != null)
+					while(gerente[indicedogerente].seuCliente[indicedocliente].conta[j].Movimentações[k] != null)
 					{
-						tableModel.insertRow(i, new Object[] {cliente[indice].conta[j].numerodaconta,cliente[indice].conta[j].Movimentações[k]});
+						tableModel.insertRow(i, new Object[] {gerente[indicedogerente].seuCliente[indicedocliente].conta[j].numerodaconta,gerente[indicedogerente].seuCliente[indicedocliente].conta[j].Movimentações[k]});
 						k++;
 					}
 			   j++;

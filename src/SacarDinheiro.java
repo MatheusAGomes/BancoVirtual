@@ -17,7 +17,7 @@ public class SacarDinheiro extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 
-	public SacarDinheiro(Cliente cliente[],int indice,Gerente gerente[]) {
+	public SacarDinheiro(int indicedocliente,Gerente gerente[],int indicedogerente) {
 		int i = 0;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 330, 221);
@@ -40,9 +40,9 @@ public class SacarDinheiro extends JFrame {
 		
 
 
-		while(cliente[indice].conta[i] != null)
+		while(gerente[indicedogerente].seuCliente[indicedocliente].conta[i] != null)
 		{
-			comboBox.addItem(cliente[indice].conta[i].numerodaconta);
+			comboBox.addItem(gerente[indicedogerente].seuCliente[indicedocliente].conta[i].numerodaconta);
 			
 			i++;
 		}
@@ -60,16 +60,16 @@ public class SacarDinheiro extends JFrame {
 		btnSacar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				int indicedaconta = cliente[indice].AcharIndice(String.valueOf(comboBox.getSelectedItem()),cliente[indice]);
+				int indicedaconta = gerente[indicedogerente].seuCliente[indicedocliente].AcharIndice(String.valueOf(comboBox.getSelectedItem()),gerente[indicedogerente].seuCliente[indicedocliente]);
 				//System.out.print(cliente[indice].conta[indicedaconta].saldo);
 				double valoraaplicar = Double.valueOf(textField.getText());
-				if(((cliente[indice].conta[indicedaconta].limite + cliente[indice].conta[indicedaconta].saldo)-valoraaplicar)>=0) {
+				if(((gerente[indicedogerente].seuCliente[indicedocliente].conta[indicedaconta].limite + gerente[indicedogerente].seuCliente[indicedocliente].conta[indicedaconta].saldo)-valoraaplicar)>=0) {
 				
 				
-				cliente[indice].conta[indicedaconta].saldo = cliente[indice].conta[indicedaconta].saldo - valoraaplicar;
-				cliente[indice].conta[indicedaconta].Movimentacoes(cliente[indice],valoraaplicar,2);
+				gerente[indicedogerente].seuCliente[indicedocliente].conta[indicedaconta].saldo = gerente[indicedogerente].seuCliente[indicedocliente].conta[indicedaconta].saldo - valoraaplicar;
+				gerente[indicedogerente].seuCliente[indicedocliente].conta[indicedaconta].Movimentacoes(gerente[indicedogerente].seuCliente[indicedocliente],valoraaplicar,2);
 				JOptionPane.showMessageDialog(null,"VALOR SACADO");
-				AreaLogadaCliente janeladecliente = new AreaLogadaCliente(cliente,indice,gerente);
+				AreaLogadaCliente janeladecliente = new AreaLogadaCliente(indicedocliente,gerente,indicedogerente);
 				setVisible(false);
 				janeladecliente.setVisible(true);
 				}else {
@@ -84,7 +84,7 @@ public class SacarDinheiro extends JFrame {
 		btnVoltar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				AreaLogadaCliente janeladecliente = new AreaLogadaCliente(cliente,indice,gerente);
+				AreaLogadaCliente janeladecliente = new AreaLogadaCliente(indicedocliente,gerente,indicedogerente);
 				setVisible(false);
 				janeladecliente.setVisible(true);
 			}
