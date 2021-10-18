@@ -1,5 +1,0 @@
-Nome: adm
-Senha: 123
-Clientes: 
-Nome: pedro
-Senha: 123

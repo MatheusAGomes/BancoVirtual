@@ -42,6 +42,60 @@ public class Gerente extends Pessoas {
 		}
 		return valorencontrado;
 	}
+	public void SalvarGerente(Gerente gerente[])
+	{
+		int i =0;
+		FileWriter fw;
+		try {
+			fw = new FileWriter("BancoDeGerente.txt");
+			PrintWriter pw = new PrintWriter(fw);
+			while(gerente[i] != null)
+			{
+				pw.print(gerente[i].nomedapessoa+","+gerente[i].senha+"\n");
+				i++;
+			}
+			pw.flush();
+			pw.close();
+			fw.close();
+			
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+	public void SalvarCliente(Gerente gerente[])
+	{
+		int i =0;
+		int j =0;
+		FileWriter fw;
+		try {
+			fw = new FileWriter("BancoDeClientes.txt");
+			PrintWriter pw = new PrintWriter(fw);
+			while(gerente[i] != null)
+			{
+				while(gerente[i].seuCliente[j]!= null)
+				{
+				pw.print(gerente[i].seuCliente[j].nomedapessoa+","+gerente[i].seuCliente[j].senha+","+i+"\n");
+				j++;
+				}
+				i++;
+			}
+			pw.flush();
+			pw.close();
+			fw.close();
+			
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
 	
 	
 	
