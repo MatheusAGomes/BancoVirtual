@@ -80,6 +80,7 @@ public class Login extends JFrame {
 		
 		int i = 0;
 		int j = 0;
+		int chave = 0;
 		
 		String Opção = comboBox.getSelectedItem().toString();
 		String Gerente = "GERENTE";
@@ -94,53 +95,64 @@ public class Login extends JFrame {
 			//GERENTE
 			while(i < 21)
 			{
-		if(Opção.equals(Gerente))
-		{
-			//System.out.print(gerentebasico[i].nomedapessoa);
-			if(UsernameObtido.equals(gerentebasico[i].nomedapessoa))
-			{
-				//System.out.print(gerentebasico[i].senha);
-
-				if(SenhaObtida.equals(gerentebasico[i].senha))
-				{
-					AreaLogadaGerente MenuDoGerente = new AreaLogadaGerente(gerentebasico,i);
-					this.setVisible(false);
-					MenuDoGerente.setVisible(true);
-					break;
+							if(Opção.equals(Gerente))
+							{
+								System.out.print(gerentebasico[i].nomedapessoa);
+								if(UsernameObtido.equals(gerentebasico[i].nomedapessoa))
+								{
+									System.out.print(gerentebasico[i].senha);
 					
-				}
-			}
-		}
-		if(Opção.equals(Cliente))
-		{	
-			while(j<21)
-			{
-			if(UsernameObtido.equals(gerentebasico[i].seuCliente[j].nomedapessoa))
-			{
-				
-				System.out.print(gerentebasico[i].seuCliente[j].nomedapessoa);
-				System.out.print(gerentebasico[i].seuCliente[j].senha);
-				if(SenhaObtida.equals(gerentebasico[i].seuCliente[j].senha))
-				{
-					
-					AreaLogadaCliente MenuDoCliente = new AreaLogadaCliente(i,gerentebasico,j);
-					setVisible(false);
-					MenuDoCliente.setVisible(true);
-					break;
-					
-				}
-			}
-			j++;
-			}
-		}
+									if(SenhaObtida.equals(gerentebasico[i].senha))
+									{
+										chave = 1;
+										AreaLogadaGerente MenuDoGerente = new AreaLogadaGerente(gerentebasico,i);
+										this.setVisible(false);
+										MenuDoGerente.setVisible(true);
+										break;
+										
+									}
+								}
+							}
+							//
+							if(Opção.equals(Cliente))
+							{	
+								j=0;
+								while(j<21)
+								{
+									
+									
+								if(UsernameObtido.equals(gerentebasico[i].seuCliente[j].nomedapessoa))
+								{
+									
+									if(SenhaObtida.equals(gerentebasico[i].seuCliente[j].senha))
+									{
+										chave = 1;
+										AreaLogadaCliente MenuDoCliente = new AreaLogadaCliente(j,gerentebasico,i);
+										setVisible(false);
+										MenuDoCliente.setVisible(true);
+										break;
+										
+									}
+								}
+								
+								j++;
+								
+								}
+							}
 		
 		
-		i++;
+						i++;
 		
 			
 			}
 		}
-		catch (Exception e) {JOptionPane.showMessageDialog(null,"Username ou senha incorretos");}
+		catch(Exception e) {
+			if(chave == 0)
+			{
+				JOptionPane.showMessageDialog(null,"Usuario ou senhas incorretos");
+			}
+		}
+		
 		
 		
 			

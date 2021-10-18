@@ -11,6 +11,8 @@ import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class AreaLogadaGerente extends JFrame {
 
@@ -31,21 +33,22 @@ public class AreaLogadaGerente extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("Ol\u00E1,");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNewLabel.setBounds(10, 11, 104, 14);
+		lblNewLabel.setBounds(10, 11, 36, 14);
 		panel.add(lblNewLabel);
 		
 		JLabel lblNomeDoGerente = new JLabel(gerente[indicedogerente].nomedapessoa);
 		lblNomeDoGerente.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNomeDoGerente.setBounds(41, 11, 82, 14);
+		lblNomeDoGerente.setBounds(45, 11, 371, 14);
 		panel.add(lblNomeDoGerente);
 		
 		JButton btnVerificarContas = new JButton("Verificar Contas");
 		btnVerificarContas.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				setVisible(false);
 				VerificarContasDeClientes menudeverificacao = new VerificarContasDeClientes(indicedogerente,gerente);
 				menudeverificacao.setVisible(true);
+				setVisible(false);
+				
 				
 			}
 		});
@@ -53,22 +56,60 @@ public class AreaLogadaGerente extends JFrame {
 		panel.add(btnVerificarContas);
 		
 		JButton btnMovimentacoesDeClientes = new JButton("Movimentacoes de clientes");
+		btnMovimentacoesDeClientes.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				setVisible(false);
+				new ExtratoDoGerente(gerente,indicedogerente).setVisible(true);
+				
+			}
+		});
 		btnMovimentacoesDeClientes.setBounds(10, 93, 170, 23);
 		panel.add(btnMovimentacoesDeClientes);
 		
 		JButton btnAplicacoes = new JButton("Aplica\u00E7\u00F5es");
+		btnAplicacoes.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				AplicarDinheiroDoCliente janeladeaplicacao = new AplicarDinheiroDoCliente(indicedogerente,gerente);
+				janeladeaplicacao.setVisible(true);
+				setVisible(false);
+			}
+		});
 		btnAplicacoes.setBounds(10, 127, 170, 23);
 		panel.add(btnAplicacoes);
 		
 		JButton btnTransferencias = new JButton("Transfer\u00EAncias");
+		btnTransferencias.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				TransferenciasEntreClientes jTransferencias = new TransferenciasEntreClientes(indicedogerente,gerente);
+				jTransferencias.setVisible(true);
+				setVisible(false);
+			}
+		});
 		btnTransferencias.setBounds(10, 161, 170, 23);
 		panel.add(btnTransferencias);
 		
 		JButton btnSaques = new JButton("Saques");
+		btnSaques.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				setVisible(false);
+				new SaqueDoGerente(indicedogerente,gerente).setVisible(true);
+			}
+		});
 		btnSaques.setBounds(10, 195, 170, 23);
 		panel.add(btnSaques);
 		
 		JButton btnLimitesETaxas = new JButton("Limites e Taxas");
+		btnLimitesETaxas.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				setVisible(false);
+				new LimitesTaxas(gerente,indicedogerente).setVisible(true);
+			}
+		});
 		btnLimitesETaxas.setBounds(10, 229, 170, 23);
 		panel.add(btnLimitesETaxas);
 		
@@ -88,7 +129,7 @@ public class AreaLogadaGerente extends JFrame {
 		btnAlterarsuaSenha.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				gerente[indicedogerente].AlterarSenha(JOptionPane.showInputDialog("Nova senha: "));
+				
 			}
 		});
 		btnAlterarsuaSenha.setBounds(10, 297, 170, 23);

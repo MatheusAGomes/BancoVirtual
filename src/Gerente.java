@@ -1,11 +1,13 @@
 
 public class Gerente extends Pessoas {
 	int quantidadedeclientes;
+	int quantidadedegerentes=0;
 	Cliente seuCliente[] = new Cliente[5];
 
 	public Gerente(String nome,String senha) {
 		super(nome,senha);
 		this.quantidadedeclientes = 0;
+		this.quantidadedegerentes = this.quantidadedegerentes + 1;
 	}
 	
 	public void AgregarCliente(Cliente novoCliente)
@@ -16,8 +18,6 @@ public class Gerente extends Pessoas {
 	
 	public void AlterarSenha(String novaSenha)
 	{
-		
-		
 		this.senha = novaSenha;
 	}
 	public int AcharIndicePeloNome(String Nome,Gerente gerente){

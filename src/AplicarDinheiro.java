@@ -59,8 +59,7 @@ public class AplicarDinheiro extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				double valoraaplicar = Double.valueOf(textField.getText());
 				int indicedaconta = gerente[indicedogerente].seuCliente[indicedocliente].AcharIndice(String.valueOf(comboBox.getSelectedItem()),gerente[indicedogerente].seuCliente[indicedocliente]);
-				gerente[indicedogerente].seuCliente[indicedocliente].conta[indicedaconta].saldo = gerente[indicedogerente].seuCliente[indicedocliente].conta[indicedaconta].saldo + valoraaplicar;
-				gerente[indicedogerente].seuCliente[indicedocliente].conta[indicedaconta].Movimentacoes(gerente[indicedogerente].seuCliente[indicedocliente],valoraaplicar,1);
+				gerente[indicedogerente].seuCliente[indicedocliente].conta[indicedaconta].Aplicar(valoraaplicar, gerente[indicedogerente].seuCliente[indicedocliente]);
 				JOptionPane.showMessageDialog(null,"VALOR APLICADO");
 				AreaLogadaCliente janeladecliente = new AreaLogadaCliente(indicedocliente,gerente,indicedogerente);
 				setVisible(false);

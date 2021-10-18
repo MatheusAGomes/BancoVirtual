@@ -39,9 +39,9 @@ public class VerificarContasDeClientes extends JFrame {
 		
 		
 		
-		while(i<gerente[indice].quantidadedeclientes) {
-		comboBox.addItem(gerente[indice].seuCliente[i].nomedapessoa);
+		while(gerente[indice].seuCliente[i] != null) {
 		System.out.print(gerente[indice].seuCliente[i].nomedapessoa);
+		comboBox.addItem(gerente[indice].seuCliente[i].nomedapessoa);
 		i++;
 		}
 		
@@ -74,6 +74,18 @@ public class VerificarContasDeClientes extends JFrame {
 		});
 		btnPesquisar.setBounds(273, 36, 137, 23);
 		panel.add(btnPesquisar);
+		
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				AreaLogadaGerente janelaGerente = new AreaLogadaGerente(gerente,indice);
+				setVisible(false);
+				janelaGerente.setVisible(true);
+			}
+		});
+		btnVoltar.setBounds(273, 415, 151, 23);
+		panel.add(btnVoltar);
 
 	}
 	

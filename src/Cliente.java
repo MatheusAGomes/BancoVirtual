@@ -102,6 +102,14 @@ public class Cliente extends Pessoas {
 	{
 		this.senha = novaSenha;
 	}
+	public void MudarTaxa(int numerodaconta,double taxa)
+	{
+		this.conta[numerodaconta].taxa = taxa;
+	}
+	public void MudarLimite(int numerodaconta,double limite)
+	{
+		this.conta[numerodaconta].limite = limite;
+	}
 	
 	
 	

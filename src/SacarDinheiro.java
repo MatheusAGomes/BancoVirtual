@@ -62,12 +62,10 @@ public class SacarDinheiro extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				int indicedaconta = gerente[indicedogerente].seuCliente[indicedocliente].AcharIndice(String.valueOf(comboBox.getSelectedItem()),gerente[indicedogerente].seuCliente[indicedocliente]);
 				//System.out.print(cliente[indice].conta[indicedaconta].saldo);
-				double valoraaplicar = Double.valueOf(textField.getText());
-				if(((gerente[indicedogerente].seuCliente[indicedocliente].conta[indicedaconta].limite + gerente[indicedogerente].seuCliente[indicedocliente].conta[indicedaconta].saldo)-valoraaplicar)>=0) {
+				double valorasacar = Double.valueOf(textField.getText());
+				if(((gerente[indicedogerente].seuCliente[indicedocliente].conta[indicedaconta].limite + gerente[indicedogerente].seuCliente[indicedocliente].conta[indicedaconta].saldo)-valorasacar)>=0) {
 				
-				
-				gerente[indicedogerente].seuCliente[indicedocliente].conta[indicedaconta].saldo = gerente[indicedogerente].seuCliente[indicedocliente].conta[indicedaconta].saldo - valoraaplicar;
-				gerente[indicedogerente].seuCliente[indicedocliente].conta[indicedaconta].Movimentacoes(gerente[indicedogerente].seuCliente[indicedocliente],valoraaplicar,2);
+				gerente[indicedogerente].seuCliente[indicedocliente].conta[indicedaconta].Sacar(valorasacar,gerente[indicedogerente].seuCliente[indicedocliente]);
 				JOptionPane.showMessageDialog(null,"VALOR SACADO");
 				AreaLogadaCliente janeladecliente = new AreaLogadaCliente(indicedocliente,gerente,indicedogerente);
 				setVisible(false);
