@@ -1,3 +1,6 @@
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class Gerente extends Pessoas {
 	int quantidadedeclientes;
@@ -39,6 +42,8 @@ public class Gerente extends Pessoas {
 		}
 		return valorencontrado;
 	}
+	
+	
 	
 
 }

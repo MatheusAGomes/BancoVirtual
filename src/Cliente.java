@@ -1,3 +1,7 @@
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.swing.JOptionPane;
 
 public class Cliente extends Pessoas {
@@ -110,6 +114,7 @@ public class Cliente extends Pessoas {
 	{
 		this.conta[numerodaconta].limite = limite;
 	}
+
 	
 	
 	

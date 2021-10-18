@@ -97,6 +97,7 @@ public class CadastroDeCliente extends JFrame {
 		this.setVisible(false);
 		AreaLogadaGerente MenuDoGerente = new AreaLogadaGerente(gerente,indice);
 		MenuDoGerente.setVisible(true);
+		gerente[indice].SalvarPessoas(gerente);
 		}
 		else
 		{	
@@ -109,6 +110,7 @@ public class CadastroDeCliente extends JFrame {
 					JOptionPane.showMessageDialog(null,"Gerente cadastrado");
 					setVisible(false);
 					new AreaLogadaGerente(gerente,indice).setVisible(true);
+					gerente[indice].SalvarPessoas(gerente);
 					break;
 					
 				}
