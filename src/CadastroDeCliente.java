@@ -10,7 +10,12 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.logging.Logger;
+
 import javax.swing.JComboBox;
 
 public class CadastroDeCliente extends JFrame {
@@ -88,10 +93,13 @@ public class CadastroDeCliente extends JFrame {
 	
 	public void CadastrarCliente(Gerente gerente[],int indice,JComboBox comboBox,JTextField Nome,JTextField Senha) {
 		int tamanhodovetor = 0;
-		
+		String usuario = criptografia(Nome);
+		String senha = criptografia(Senha);
 		if(comboBox.getSelectedItem().toString() == "Cliente")
 		{
-		Cliente novocliente = new Cliente(txtNome.getText(),txtSenha.getText(),gerente[indice]);
+		
+		System.out.print(senha);
+		Cliente novocliente = new Cliente(usuario,senha,gerente[indice]);
 		gerente[indice].AgregarCliente(novocliente);
 		JOptionPane.showMessageDialog(null,"Cliente cadastrado");
 		this.setVisible(false);
@@ -106,7 +114,7 @@ public class CadastroDeCliente extends JFrame {
 			{
 				if(gerente[tamanhodovetor] == null)
 				{
-					gerente[tamanhodovetor] = new Gerente(Nome.getText().toString(),Senha.getText().toString());
+					gerente[tamanhodovetor] = new Gerente(usuario,senha);
 					JOptionPane.showMessageDialog(null,"Gerente cadastrado");
 					setVisible(false);
 					new AreaLogadaGerente(gerente,indice).setVisible(true);
@@ -122,6 +130,43 @@ public class CadastroDeCliente extends JFrame {
 			
 		}
 
+		
+	}
+	
+	
+	public String criptografia(JTextField Senha){
+		
+		String senha = Senha.getText();
+		
+	
+			
+			MessageDigest md;
+			try {
+				md = MessageDigest.getInstance("SHA-256");
+			
+			
+			byte messageDigest[] = md.digest(senha.getBytes("UTF-8"));
+			
+			StringBuilder sb = new StringBuilder();
+			
+			
+				for(byte b: messageDigest)
+				{
+				sb.append(String.format("%02X", 0xFF & b));	
+				}
+				
+				return sb.toString();
+			} catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+				return senha;
+			
+			
+		
+		
+		
+		
 		
 	}
 

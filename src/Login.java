@@ -12,6 +12,9 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class Login extends JFrame {
 
@@ -85,10 +88,13 @@ public class Login extends JFrame {
 		String Opção = comboBox.getSelectedItem().toString();
 		String Gerente = "GERENTE";
 		String Cliente = "CLIENTE";
-		String UsernameObtido = txtUsername.getText();
-		String SenhaObtida = txtSenha.getText();
+		//String UsernameObtido = txtUsername.getText();
+		//String SenhaObtida = txtSenha.getText();
+		
+		String UsernameObtido = criptografia(txtUsername.getText());
+		String SenhaObtida = criptografia(txtSenha.getText());
 
-	
+		
 		
 		try {
 	
@@ -160,5 +166,40 @@ public class Login extends JFrame {
 			
 		
 	
+	}
+	public String criptografia(String Senhacriptografada){
+		
+		String senha = Senhacriptografada;
+		
+	
+			
+			MessageDigest md;
+			try {
+				md = MessageDigest.getInstance("SHA-256");
+			
+			
+			byte messageDigest[] = md.digest(senha.getBytes("UTF-8"));
+			
+			StringBuilder sb = new StringBuilder();
+			
+			
+				for(byte b: messageDigest)
+				{
+				sb.append(String.format("%02X", 0xFF & b));	
+				}
+				
+				return sb.toString();
+			} catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+				return senha;
+			
+			
+		
+		
+		
+		
+		
 	}
 }

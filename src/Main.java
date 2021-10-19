@@ -1,6 +1,11 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+import javax.swing.JTextField;
 
 public class Main {
 
@@ -56,10 +61,11 @@ public class Main {
 			System.out.println("Error: "+e.getMessage());
 		}
 		
-		//gerentebasico[0] = new Gerente("adm","123");
+		gerentebasico[0] = new Gerente("adm","123");
 		Login MenuDeLogin = new Login(gerentebasico);
 		MenuDeLogin.setVisible(true);
 	}
+	
 
 	
 
