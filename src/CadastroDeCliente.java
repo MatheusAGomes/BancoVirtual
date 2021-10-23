@@ -23,11 +23,12 @@ public class CadastroDeCliente extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtNome;
 	private JTextField txtSenha;
+	private JTextField txtLogin;
 
 	
 	public CadastroDeCliente(Gerente gerente[],int indice) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 380, 225);
+		setBounds(100, 100, 380, 250);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -38,21 +39,21 @@ public class CadastroDeCliente extends JFrame {
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Nome");
-		lblNewLabel.setBounds(47, 44, 46, 14);
+		lblNewLabel.setBounds(47, 76, 46, 14);
 		panel.add(lblNewLabel);
 		
 		txtNome = new JTextField();
-		txtNome.setBounds(120, 41, 188, 20);
+		txtNome.setBounds(120, 73, 188, 20);
 		panel.add(txtNome);
 		txtNome.setColumns(10);
 		
 		JLabel lblSenha = new JLabel("Senha");
-		lblSenha.setBounds(47, 75, 46, 14);
+		lblSenha.setBounds(47, 104, 46, 14);
 		panel.add(lblSenha);
 		
 		txtSenha = new JTextField();
 		txtSenha.setColumns(10);
-		txtSenha.setBounds(120, 72, 188, 20);
+		txtSenha.setBounds(120, 101, 188, 20);
 		panel.add(txtSenha);
 		
 		
@@ -76,7 +77,7 @@ public class CadastroDeCliente extends JFrame {
 				new AreaLogadaGerente(gerente,indice).setVisible(true);
 			}
 		});
-		btnVoltar.setBounds(47, 141, 261, 23);
+		btnVoltar.setBounds(47, 163, 261, 23);
 		panel.add(btnVoltar);
 		
 		JButton btnCadastrarCliente = new JButton("Cadastrar");
@@ -86,20 +87,29 @@ public class CadastroDeCliente extends JFrame {
 				CadastrarCliente(gerente,indice,comboBox,txtNome,txtSenha);
 			}
 		});
-		btnCadastrarCliente.setBounds(47, 107, 261, 23);
+		btnCadastrarCliente.setBounds(47, 129, 261, 23);
 		panel.add(btnCadastrarCliente);
+		
+		JLabel lblNewLabel_2 = new JLabel("Login");
+		lblNewLabel_2.setBounds(47, 51, 46, 14);
+		panel.add(lblNewLabel_2);
+		
+		txtLogin = new JTextField();
+		txtLogin.setBounds(120, 48, 188, 20);
+		panel.add(txtLogin);
+		txtLogin.setColumns(10);
 	}
 	
 	
 	public void CadastrarCliente(Gerente gerente[],int indice,JComboBox comboBox,JTextField Nome,JTextField Senha) {
 		int tamanhodovetor = 0;
-		String usuario = criptografia(Nome);
-		String senha = criptografia(Senha);
+		String usuario = (gerente[indice].criptografia(Nome.getText()));
+		String senha = (gerente[indice].criptografia(Senha.getText()));
 		if(comboBox.getSelectedItem().toString() == "Cliente")
 		{
 		
 		System.out.print(senha);
-		Cliente novocliente = new Cliente(usuario,senha,gerente[indice]);
+		Cliente novocliente = new Cliente(usuario,txtLogin.getText(),senha,gerente[indice]);
 		gerente[indice].AgregarCliente(novocliente);
 		JOptionPane.showMessageDialog(null,"Cliente cadastrado");
 		this.setVisible(false);
@@ -115,6 +125,7 @@ public class CadastroDeCliente extends JFrame {
 				if(gerente[tamanhodovetor] == null)
 				{
 					gerente[tamanhodovetor] = new Gerente(usuario,senha);
+					
 					JOptionPane.showMessageDialog(null,"Gerente cadastrado");
 					setVisible(false);
 					new AreaLogadaGerente(gerente,indice).setVisible(true);
@@ -132,42 +143,4 @@ public class CadastroDeCliente extends JFrame {
 
 		
 	}
-	
-	
-	public String criptografia(JTextField Senha){
-		
-		String senha = Senha.getText();
-		
-	
-			
-			MessageDigest md;
-			try {
-				md = MessageDigest.getInstance("SHA-256");
-			
-			
-			byte messageDigest[] = md.digest(senha.getBytes("UTF-8"));
-			
-			StringBuilder sb = new StringBuilder();
-			
-			
-				for(byte b: messageDigest)
-				{
-				sb.append(String.format("%02X", 0xFF & b));	
-				}
-				
-				return sb.toString();
-			} catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-				return senha;
-			
-			
-		
-		
-		
-		
-		
-	}
-
 }

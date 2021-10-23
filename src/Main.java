@@ -30,6 +30,8 @@ public class Main {
 				line = br.readLine();
 				i++;
 			}
+			br.close();
+			
 			
 		}
 		catch(IOException e)
@@ -45,15 +47,16 @@ public class Main {
 			{
 				
 				String[] vetor = line.split(",");
-				String nome = vetor[0];
-				System.out.print(nome);
-				String senha = vetor[1];
-				int indicedogerente = Integer.valueOf(vetor[2]);
-				Cliente novoCliente = new Cliente(nome,senha,gerentebasico[indicedogerente]);
+				String login = vetor[0];
+				String nome = vetor[1];
+				String senha = vetor[2];
+				int indicedogerente = Integer.valueOf(vetor[3]);
+				Cliente novoCliente = new Cliente(login,nome,senha,gerentebasico[indicedogerente]);
 				gerentebasico[indicedogerente].AgregarCliente(novoCliente); 
 				line = br.readLine();
 			
 			}
+			br.close();
 			
 		}
 		catch(IOException e)
@@ -61,11 +64,13 @@ public class Main {
 			System.out.println("Error: "+e.getMessage());
 		}
 		
-		gerentebasico[0] = new Gerente("adm","123");
+		
+		System.out.print(gerentebasico[0].login + "\n");
+		System.out.print(gerentebasico[0].senha  + "\n");
 		Login MenuDeLogin = new Login(gerentebasico);
 		MenuDeLogin.setVisible(true);
 	}
-	
+
 
 	
 

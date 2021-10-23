@@ -92,15 +92,15 @@ public class ExtratoDoGerente extends JFrame {
 				if(i==0) {
 				if(gerente.seuCliente[indicedocliente].conta[indicedaconta].tipodeconta == 1)
 				{
-					tableModel.insertRow(i,new Object[] {gerente.seuCliente[indicedocliente].nomedapessoa,gerente.seuCliente[indicedocliente].conta[indicedaconta].numerodaconta,"Simples",gerente.seuCliente[indicedocliente].conta[indicedaconta].saldo,gerente.seuCliente[indicedocliente].conta[indicedaconta].Movimentações[i]});
+					tableModel.insertRow(i,new Object[] {(gerente.seuCliente[indicedocliente].nomedapessoa),gerente.seuCliente[indicedocliente].conta[indicedaconta].numerodaconta,"Simples",gerente.seuCliente[indicedocliente].conta[indicedaconta].saldo,gerente.seuCliente[indicedocliente].conta[indicedaconta].Movimentações[i]});
 				}
 				if(gerente.seuCliente[indicedocliente].conta[indicedaconta].tipodeconta == 2)
 				{
-					tableModel.insertRow(i,new Object[] {gerente.seuCliente[indicedocliente].nomedapessoa,gerente.seuCliente[indicedocliente].conta[indicedaconta].numerodaconta,"Especial",gerente.seuCliente[indicedocliente].conta[indicedaconta].saldo,gerente.seuCliente[indicedocliente].conta[indicedaconta].Movimentações[i]});
+					tableModel.insertRow(i,new Object[] {(gerente.seuCliente[indicedocliente].nomedapessoa),gerente.seuCliente[indicedocliente].conta[indicedaconta].numerodaconta,"Especial",gerente.seuCliente[indicedocliente].conta[indicedaconta].saldo,gerente.seuCliente[indicedocliente].conta[indicedaconta].Movimentações[i]});
 				}
 				if(gerente.seuCliente[indicedocliente].conta[indicedaconta].tipodeconta == 3)
 				{
-					tableModel.insertRow(i,new Object[] {gerente.seuCliente[indicedocliente].nomedapessoa,gerente.seuCliente[indicedocliente].conta[indicedaconta].numerodaconta,"Poupanca",gerente.seuCliente[indicedocliente].conta[indicedaconta].saldo,gerente.seuCliente[indicedocliente].conta[indicedaconta].Movimentações[i]});
+					tableModel.insertRow(i,new Object[] {(gerente.seuCliente[indicedocliente].nomedapessoa),gerente.seuCliente[indicedocliente].conta[indicedaconta].numerodaconta,"Poupanca",gerente.seuCliente[indicedocliente].conta[indicedaconta].saldo,gerente.seuCliente[indicedocliente].conta[indicedaconta].Movimentações[i]});
 				}}
 				else
 				{

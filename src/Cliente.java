@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import javax.swing.JOptionPane;
 
 public class Cliente extends Pessoas {
+
 	int quantidadedecontasSimples ;
 	int quantidadedecontasEspecial ;
 	int quantidadedecontasPoupanca ;
@@ -13,8 +14,9 @@ public class Cliente extends Pessoas {
 	Conta conta[] = new Conta[5];
 	
 			
-	public Cliente(String nome,String senha,Gerente Gerente) {
-		super(nome,senha);
+	public Cliente(String Login,String Nome,String senha,Gerente Gerente) {
+		super(Login,senha);
+		this.nomedapessoa = Nome;
 		this.quantidadedecontasEspecial = 0;
 		this.quantidadedecontasPoupanca = 0;
 		this.quantidadedecontasSimples = 0;

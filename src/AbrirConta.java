@@ -57,7 +57,7 @@ public class AbrirConta extends JFrame {
 		txtNumeroDaConta.setBounds(163, 59, 201, 20);
 		panel.add(txtNumeroDaConta);
 		txtNumeroDaConta.setColumns(10);
-		txtNumeroDaConta.setText(numeroAleatorio());
+		txtNumeroDaConta.setText(numeroAleatorio(gerente));
 		
 		JLabel lblNewLabel_2 = new JLabel("Tipo da conta");
 		lblNewLabel_2.setBounds(27, 100, 126, 14);
@@ -83,9 +83,45 @@ public class AbrirConta extends JFrame {
 		setVisible(true);
 	}
 	
-	public String numeroAleatorio() {
+	public String numeroAleatorio(Gerente gerente[]) {
+		
 			Random gerador = new Random();
-			return String.valueOf((Math.abs(gerador.nextInt(10000))));
+			String numero =  String.valueOf((Math.abs(gerador.nextInt(10000))));
+			if(VerificaNumeroAleatorio(gerente,numero) == 1)
+			{
+				numeroAleatorio(gerente);
+			}
+			
+			return numero;
+			
+	}
+	public int VerificaNumeroAleatorio(Gerente gerente[],String numero)
+	{
+		int i = 0;
+		int j = 0;
+		int k = 0;
+		
+		while(gerente[i] != null)
+		{
+			while(gerente[i].seuCliente[j] != null)
+			{
+				while(gerente[i].seuCliente[j].conta[k] != null)
+				{
+					if(String.valueOf(gerente[i].seuCliente[j].conta[k].numerodaconta).equals(numero))
+					{
+						return 1;
+					}
+					k++;
+				}
+				j++;
+			}
+			
+			i++;
+		}
+		
+		return 0;
+		
+		
 	}
 	public void CriarConta(Gerente gerente[],int indicedogerente,int indicedocliente,String NumeroemString) {
 		String Opcao = ComboTipoConta.getSelectedItem().toString();

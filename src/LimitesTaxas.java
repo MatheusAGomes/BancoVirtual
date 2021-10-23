@@ -87,7 +87,7 @@ public class LimitesTaxas extends JFrame {
 		contentPane.add(comboBoxCliente);
 		while(gerente[indice].seuCliente[i] != null)
 		{
-			comboBoxCliente.addItem(gerente[indice].seuCliente[i].nomedapessoa);
+			comboBoxCliente.addItem((gerente[indice].seuCliente[i].nomedapessoa));
 			
 			i++;
 		}

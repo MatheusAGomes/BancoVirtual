@@ -111,7 +111,7 @@ public class TransferenciasEntreClientes extends JFrame {
 		contentPane.add(comboBoxCliente1);
 		while(gerente[indice].seuCliente[i] != null) {
 			System.out.print(gerente[indice].seuCliente[i].nomedapessoa);
-			comboBoxCliente1.addItem(gerente[indice].seuCliente[i].nomedapessoa);
+			comboBoxCliente1.addItem((gerente[indice].seuCliente[i].nomedapessoa));
 			i++;
 			}
 		
@@ -128,7 +128,7 @@ public class TransferenciasEntreClientes extends JFrame {
 		comboBoxCliente2.addItem(" ");
 		while(gerente[indice].seuCliente[j] != null) {
 		//	System.out.print(gerente[indice].seuCliente[j].nomedapessoa);
-			comboBoxCliente2.addItem(gerente[indice].seuCliente[j].nomedapessoa);
+			comboBoxCliente2.addItem((gerente[indice].seuCliente[j].nomedapessoa));
 			j++;
 			}
 		

@@ -16,6 +16,7 @@ public class SaqueDoGerente extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
+	private JComboBox comboBox_1;
 
 	public SaqueDoGerente(int indice, Gerente gerente[]) {
 		int i = 0;
@@ -46,7 +47,7 @@ public class SaqueDoGerente extends JFrame {
 		
 		
 		
-		JComboBox comboBox_1 = new JComboBox();
+		 comboBox_1 = new JComboBox();
 		comboBox_1.setBounds(63, 59, 301, 22);
 		contentPane.add(comboBox_1);
 		
@@ -63,8 +64,14 @@ public class SaqueDoGerente extends JFrame {
 		btnSacar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				try {
 				AplicarDinheiro(comboBox.getSelectedItem().toString(),comboBox_1,gerente[indice],Double.valueOf(textField.getText()));
 				new AreaLogadaCliente(indice, gerente, indice);
+				}
+				catch (Exception d) {
+					JOptionPane.showMessageDialog(null,"Há campos não preenchidos");
+				
+				}
 			}
 		});
 		btnSacar.setBounds(20, 121, 344, 23);
@@ -107,6 +114,11 @@ public class SaqueDoGerente extends JFrame {
 	{
 		int indiceDoCliente = gerente.AcharIndicePeloNome(nomedocorrentista, gerente);
 		int i = 0;
+		if(comboBox_1.getSelectedItem() == null)
+		{
+			JOptionPane.showMessageDialog(null, "Este cliente não contém conta aberta");
+		}
+		else {
 		while(gerente.seuCliente[indiceDoCliente].conta[i] != null) {
 			if(gerente.seuCliente[indiceDoCliente].conta[i].numerodaconta == Integer.valueOf(comboBox.getSelectedItem().toString()) ) {
 				if(((gerente.seuCliente[indiceDoCliente].conta[i].saldo +gerente.seuCliente[indiceDoCliente].conta[i].limite)-valor)>=0 || valor >= 110000 ) {
@@ -115,6 +127,7 @@ public class SaqueDoGerente extends JFrame {
 				}
 			}
 		i++;
+		}
 		}
 	}
 }

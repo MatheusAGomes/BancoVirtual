@@ -1,8 +1,12 @@
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class Gerente extends Pessoas {
+	
 	int quantidadedeclientes;
 	int quantidadedegerentes=0;
 	Cliente seuCliente[] = new Cliente[5];
@@ -11,6 +15,7 @@ public class Gerente extends Pessoas {
 		super(nome,senha);
 		this.quantidadedeclientes = 0;
 		this.quantidadedegerentes = this.quantidadedegerentes + 1;
+		
 	}
 	
 	public void AgregarCliente(Cliente novoCliente)
@@ -18,7 +23,6 @@ public class Gerente extends Pessoas {
 		this.seuCliente[this.quantidadedeclientes] = novoCliente;
 		this.quantidadedeclientes = this.quantidadedeclientes + 1;
 	}
-	
 	public void AlterarSenha(String novaSenha)
 	{
 		this.senha = novaSenha;
@@ -30,7 +34,7 @@ public class Gerente extends Pessoas {
 		while(gerente.seuCliente[i] != null)
 		{
 			
-			String NomeTestado  = gerente.seuCliente[i].nomedapessoa;
+			String NomeTestado  = (gerente.seuCliente[i].nomedapessoa);
 			
 			if(NomeTestado.equals(NomeaSerEncontrado))
 			{
@@ -51,7 +55,7 @@ public class Gerente extends Pessoas {
 			PrintWriter pw = new PrintWriter(fw);
 			while(gerente[i] != null)
 			{
-				pw.print(gerente[i].nomedapessoa+","+gerente[i].senha+"\n");
+				pw.print(gerente[i].login+","+gerente[i].senha+"\n");
 				i++;
 			}
 			pw.flush();
@@ -78,7 +82,7 @@ public class Gerente extends Pessoas {
 			{
 				while(gerente[i].seuCliente[j]!= null)
 				{
-				pw.print(gerente[i].seuCliente[j].nomedapessoa+","+gerente[i].seuCliente[j].senha+","+i+"\n");
+				pw.print(gerente[i].seuCliente[j].login+","+gerente[i].seuCliente[j].nomedapessoa+","+gerente[i].seuCliente[j].senha+","+i+"\n");
 				j++;
 				}
 				i++;
@@ -95,6 +99,8 @@ public class Gerente extends Pessoas {
 		
 		
 	}
+
+
 	
 	
 	

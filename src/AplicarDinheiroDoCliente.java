@@ -16,6 +16,7 @@ public class AplicarDinheiroDoCliente extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
+	private JComboBox comboBox_1;
 
 	public AplicarDinheiroDoCliente(int indice, Gerente gerente[]) {
 		int i = 0;
@@ -35,7 +36,6 @@ public class AplicarDinheiroDoCliente extends JFrame {
 		comboBox.setBounds(130, 24, 111, 22);
 		contentPane.add(comboBox);
 		while(gerente[indice].seuCliente[i] != null) {
-			System.out.print(gerente[indice].seuCliente[i].nomedapessoa);
 			comboBox.addItem(gerente[indice].seuCliente[i].nomedapessoa);
 			i++;
 			}
@@ -46,7 +46,7 @@ public class AplicarDinheiroDoCliente extends JFrame {
 		
 		
 		
-		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1 = new JComboBox();
 		comboBox_1.setBounds(63, 59, 301, 22);
 		contentPane.add(comboBox_1);
 		
@@ -63,9 +63,14 @@ public class AplicarDinheiroDoCliente extends JFrame {
 		btnAplicar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				try {
 				AplicarDinheiro(comboBox.getSelectedItem().toString(),comboBox_1,gerente[indice],Double.valueOf(textField.getText()));
 				setVisible(false);
 				new AreaLogadaGerente(gerente,indice).setVisible(true);
+				}
+				catch (Exception d) {
+					JOptionPane.showMessageDialog(null,"Há campos não preenchidos");
+				}
 				}
 		});
 		btnAplicar.setBounds(20, 121, 344, 23);
@@ -76,6 +81,7 @@ public class AplicarDinheiroDoCliente extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				comboBox_1.removeAllItems();
 				MostrarContas((comboBox.getSelectedItem().toString()),comboBox_1,gerente[indice]);
+				
 			}
 		});
 		btnMostrarContas.setBounds(251, 24, 113, 23);
@@ -108,12 +114,18 @@ public class AplicarDinheiroDoCliente extends JFrame {
 	{
 		int indiceDoCliente = gerente.AcharIndicePeloNome(nomedocorrentista, gerente);
 		int i = 0;
-		while(gerente.seuCliente[indiceDoCliente].conta[i] != null) {
-			if(gerente.seuCliente[indiceDoCliente].conta[i].numerodaconta == Integer.valueOf(comboBox.getSelectedItem().toString()) ) {
-				gerente.seuCliente[indiceDoCliente].conta[i].Aplicar(valor,gerente.seuCliente[indiceDoCliente]);
-				JOptionPane.showMessageDialog(null,"Valor aplicada !");
+		if(comboBox_1.getSelectedItem() == null)
+		{
+			JOptionPane.showMessageDialog(null, "Este cliente não contém conta aberta");
+		}
+		else {
+			while(gerente.seuCliente[indiceDoCliente].conta[i] != null) {
+				if(gerente.seuCliente[indiceDoCliente].conta[i].numerodaconta == Integer.valueOf(comboBox.getSelectedItem().toString()) ) {
+					gerente.seuCliente[indiceDoCliente].conta[i].Aplicar(valor,gerente.seuCliente[indiceDoCliente]);
+					JOptionPane.showMessageDialog(null,"Valor aplicada !");
+				}
+			i++;
 			}
-		i++;
 		}
 	}
 }

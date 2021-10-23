@@ -24,6 +24,7 @@ public class Login extends JFrame {
 	private JTextField txtSenha;
 
 	public Login(Gerente gerentebasico[]) {
+		int i =0;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 320, 345);
 		contentPane = new JPanel();
@@ -77,6 +78,7 @@ public class Login extends JFrame {
 		JButton btnLimpar = new JButton("Limpar");
 		btnLimpar.setBounds(32, 241, 225, 23);
 		panel.add(btnLimpar);
+		
 	}
 	
 	public void Logar(Gerente gerentebasico[],JComboBox comboBox) {
@@ -94,7 +96,8 @@ public class Login extends JFrame {
 		String UsernameObtido = criptografia(txtUsername.getText());
 		String SenhaObtida = criptografia(txtSenha.getText());
 
-		
+		System.out.print(UsernameObtido  + "\n");
+		System.out.print(SenhaObtida  + "\n");
 		
 		try {
 	
@@ -103,14 +106,17 @@ public class Login extends JFrame {
 			{
 							if(Opção.equals(Gerente))
 							{
-								System.out.print(gerentebasico[i].nomedapessoa);
-								if(UsernameObtido.equals(gerentebasico[i].nomedapessoa))
+							
+								//System.out.print(UsernameObtido+"\n");
+								
+								if(UsernameObtido.equals(gerentebasico[i].login))
 								{
-									System.out.print(gerentebasico[i].senha);
 					
 									if(SenhaObtida.equals(gerentebasico[i].senha))
 									{
+										
 										chave = 1;
+										gerentebasico[i].nomedapessoa = txtUsername.getText();
 										AreaLogadaGerente MenuDoGerente = new AreaLogadaGerente(gerentebasico,i);
 										this.setVisible(false);
 										MenuDoGerente.setVisible(true);
@@ -127,12 +133,13 @@ public class Login extends JFrame {
 								{
 									
 									
-								if(UsernameObtido.equals(gerentebasico[i].seuCliente[j].nomedapessoa))
+								if(UsernameObtido.equals(gerentebasico[i].seuCliente[j].login))
 								{
 									
 									if(SenhaObtida.equals(gerentebasico[i].seuCliente[j].senha))
 									{
 										chave = 1;
+										gerentebasico[i].seuCliente[j].nomedapessoa = txtUsername.getText();
 										AreaLogadaCliente MenuDoCliente = new AreaLogadaCliente(j,gerentebasico,i);
 										setVisible(false);
 										MenuDoCliente.setVisible(true);

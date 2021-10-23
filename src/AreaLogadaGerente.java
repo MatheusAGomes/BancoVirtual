@@ -36,7 +36,7 @@ public class AreaLogadaGerente extends JFrame {
 		lblNewLabel.setBounds(10, 11, 36, 14);
 		panel.add(lblNewLabel);
 		
-		JLabel lblNomeDoGerente = new JLabel(gerente[indicedogerente].nomedapessoa);
+		JLabel lblNomeDoGerente = new JLabel((gerente[indicedogerente].nomedapessoa));
 		lblNomeDoGerente.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblNomeDoGerente.setBounds(45, 11, 371, 14);
 		panel.add(lblNomeDoGerente);
@@ -83,9 +83,14 @@ public class AreaLogadaGerente extends JFrame {
 		btnTransferencias.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				try {
 				TransferenciasEntreClientes jTransferencias = new TransferenciasEntreClientes(indicedogerente,gerente);
 				jTransferencias.setVisible(true);
 				setVisible(false);
+				}
+				catch (Exception d) {
+					JOptionPane.showMessageDialog(null,"Voce não pode fazer transferencias no momento");
+				}
 			}
 		});
 		btnTransferencias.setBounds(10, 161, 170, 23);

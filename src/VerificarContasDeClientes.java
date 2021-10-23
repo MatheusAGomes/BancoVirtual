@@ -40,8 +40,8 @@ public class VerificarContasDeClientes extends JFrame {
 		
 		
 		while(gerente[indice].seuCliente[i] != null) {
-		System.out.print(gerente[indice].seuCliente[i].nomedapessoa);
-		comboBox.addItem(gerente[indice].seuCliente[i].nomedapessoa);
+		System.out.print((gerente[indice].seuCliente[i].nomedapessoa));
+		comboBox.addItem((gerente[indice].seuCliente[i].nomedapessoa));
 		i++;
 		}
 		
