@@ -62,7 +62,7 @@ public class AplicarDinheiroDoCliente extends JFrame {
 			public void keyPressed(KeyEvent e) {
 				String value = textField.getText();
 	            //int l = value.length();
-	            if (e.getKeyChar() >= '0' && e.getKeyChar() <= '9') {
+	            if ((e.getKeyChar() >= '0' && e.getKeyChar() <= '9') || e.getKeyChar() == 8) {
 	            	//textField.setEditable(true);
 	               
 	            } else {

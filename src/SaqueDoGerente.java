@@ -61,6 +61,18 @@ public class SaqueDoGerente extends JFrame {
 		textField.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
+				String value = textField.getText();
+	            //int l = value.length();
+	            if ((e.getKeyChar() >= '0' && e.getKeyChar() <= '9') || e.getKeyChar() == 8) {
+	            	//textField.setEditable(true);
+	               
+	            } else {
+	            	//textField.setEditable(false);
+	            	String texto = textField.getText();
+	            	textField.setText(texto.substring(0,texto.length() - 1));
+	            	JOptionPane.showMessageDialog(null,"Voce so pode digitar numeros neste campo");
+	            	
+	            }
 			}
 		});
 		textField.setBounds(95, 93, 269, 20);
