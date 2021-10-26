@@ -134,7 +134,9 @@ public class AreaLogadaGerente extends JFrame {
 		btnAlterarsuaSenha.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
+				setVisible(false);
+				TrocaSenhaGerente teladelogin = new TrocaSenhaGerente(gerente[indicedogerente],gerente,indicedogerente);
+				teladelogin.setVisible(true);
 			}
 		});
 		btnAlterarsuaSenha.setBounds(10, 297, 170, 23);

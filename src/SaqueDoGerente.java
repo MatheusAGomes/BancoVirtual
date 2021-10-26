@@ -11,6 +11,8 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class SaqueDoGerente extends JFrame {
 
@@ -52,10 +54,15 @@ public class SaqueDoGerente extends JFrame {
 		contentPane.add(comboBox_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Quantidade");
-		lblNewLabel_2.setBounds(24, 96, 340, 14);
+		lblNewLabel_2.setBounds(24, 96, 288, 14);
 		contentPane.add(lblNewLabel_2);
 		
 		textField = new JTextField();
+		textField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+			}
+		});
 		textField.setBounds(95, 93, 269, 20);
 		contentPane.add(textField);
 		textField.setColumns(10);
@@ -65,8 +72,15 @@ public class SaqueDoGerente extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				try {
+					if(Double.valueOf(textField.getText()) >=  110000)
+					{
 				AplicarDinheiro(comboBox.getSelectedItem().toString(),comboBox_1,gerente[indice],Double.valueOf(textField.getText()));
 				new AreaLogadaCliente(indice, gerente, indice);
+					}
+					else
+					{
+						JOptionPane.showMessageDialog(null,"Os gerentes só fazem saques maiores que 110.000,00");
+					}
 				}
 				catch (Exception d) {
 					JOptionPane.showMessageDialog(null,"Há campos não preenchidos");

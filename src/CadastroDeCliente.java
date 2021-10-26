@@ -28,7 +28,7 @@ public class CadastroDeCliente extends JFrame {
 	
 	public CadastroDeCliente(Gerente gerente[],int indice) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 380, 250);
+		setBounds(100, 100, 373, 250);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -103,19 +103,19 @@ public class CadastroDeCliente extends JFrame {
 	
 	public void CadastrarCliente(Gerente gerente[],int indice,JComboBox comboBox,JTextField Nome,JTextField Senha) {
 		int tamanhodovetor = 0;
-		String usuario = (gerente[indice].criptografia(Nome.getText()));
+		String nome = (Nome.getText());
 		String senha = (gerente[indice].criptografia(Senha.getText()));
-		if(comboBox.getSelectedItem().toString() == "Cliente")
+		String login = (gerente[indice].criptografia(txtLogin.getText()));
+		if(comboBox.getSelectedItem().toString().equals("Cliente"))
 		{
-		
-		System.out.print(senha);
-		Cliente novocliente = new Cliente(usuario,txtLogin.getText(),senha,gerente[indice]);
+		Cliente novocliente = new Cliente(login,nome,senha,gerente[indice]);
 		gerente[indice].AgregarCliente(novocliente);
+		gerente[indice].Salvar(gerente);
 		JOptionPane.showMessageDialog(null,"Cliente cadastrado");
 		this.setVisible(false);
 		AreaLogadaGerente MenuDoGerente = new AreaLogadaGerente(gerente,indice);
 		MenuDoGerente.setVisible(true);
-		gerente[indice].SalvarCliente(gerente);
+		
 		}
 		else
 		{	
@@ -124,12 +124,12 @@ public class CadastroDeCliente extends JFrame {
 			{
 				if(gerente[tamanhodovetor] == null)
 				{
-					gerente[tamanhodovetor] = new Gerente(usuario,senha);
-					
+					gerente[tamanhodovetor] = new Gerente(login,senha);
+					gerente[tamanhodovetor].setNome(nome);
 					JOptionPane.showMessageDialog(null,"Gerente cadastrado");
 					setVisible(false);
 					new AreaLogadaGerente(gerente,indice).setVisible(true);
-					gerente[indice].SalvarGerente(gerente);
+					gerente[indice].Salvar(gerente);
 					break;
 					
 				}

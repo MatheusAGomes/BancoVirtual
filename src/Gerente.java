@@ -27,6 +27,7 @@ public class Gerente extends Pessoas {
 	{
 		this.senha = novaSenha;
 	}
+	
 	public int AcharIndicePeloNome(String Nome,Gerente gerente){
 		int i=0;
 		int valorencontrado=0;
@@ -46,59 +47,62 @@ public class Gerente extends Pessoas {
 		}
 		return valorencontrado;
 	}
-	public void SalvarGerente(Gerente gerente[])
+	public void Salvar(Gerente gerente[])
 	{
 		int i =0;
 		FileWriter fw;
-		try {
-			fw = new FileWriter("BancoDeGerente.txt");
-			PrintWriter pw = new PrintWriter(fw);
-			while(gerente[i] != null)
-			{
-				pw.print(gerente[i].login+","+gerente[i].senha+"\n");
-				i++;
-			}
-			pw.flush();
-			pw.close();
-			fw.close();
-			
+		FileWriter bc;
 
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-	}
-	public void SalvarCliente(Gerente gerente[])
-	{
-		int i =0;
-		int j =0;
-		FileWriter fw;
 		try {
-			fw = new FileWriter("BancoDeClientes.txt");
-			PrintWriter pw = new PrintWriter(fw);
-			while(gerente[i] != null)
-			{
-				while(gerente[i].seuCliente[j]!= null)
+				fw = new FileWriter("BancoDeGerente.txt");
+				PrintWriter pw = new PrintWriter(fw);
+				while(gerente[i] != null)
 				{
-				pw.print(gerente[i].seuCliente[j].login+","+gerente[i].seuCliente[j].nomedapessoa+","+gerente[i].seuCliente[j].senha+","+i+"\n");
-				j++;
+					
+					pw.print(gerente[i].login+","+gerente[i].senha+"\n");
+					i++;
 				}
+				pw.flush();
+				pw.close();
+				fw.close();
+			
+
+		} 
+		catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+		}
+		
+		i = 0;
+		int j = 0;
+		
+		try {
+			bc = new FileWriter("BancoDeClientes.txt");
+			PrintWriter pw = new PrintWriter(bc);
+			while(gerente[i] != null)
+			{
+				j = 0 ;
+					while(gerente[i].seuCliente[j] != null)
+					{
+						System.out.print(gerente[i].seuCliente[j].nomedapessoa);
+						pw.print(gerente[i].seuCliente[j].login+","+gerente[i].seuCliente[j].nomedapessoa+","+gerente[i].seuCliente[j].senha+","+i+"\n");
+						j++;
+					}
 				i++;
 			}
 			pw.flush();
 			pw.close();
-			fw.close();
+			bc.close();
 			
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		
 		}
 		
-		
 	}
+	
 
 
 	

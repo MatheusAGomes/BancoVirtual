@@ -11,6 +11,8 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class AplicarDinheiro extends JFrame {
 
@@ -49,6 +51,25 @@ public class AplicarDinheiro extends JFrame {
 		panel.add(lblNewLabel_1);
 		
 		textField = new JTextField();
+		textField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				
+						String value = textField.getText();
+			            //int l = value.length();
+			            if (e.getKeyChar() >= '0' && e.getKeyChar() <= '9') {
+			            	//textField.setEditable(true);
+			               
+			            } else {
+			            	//textField.setEditable(false);
+			            	String texto = textField.getText();
+			            	textField.setText(texto.substring(0,texto.length() - 1));
+			            	JOptionPane.showMessageDialog(null,"Voce so pode digitar numeros neste campo");
+			            	
+			            }
+			         }
+				});
+		
 		textField.setBounds(117, 45, 177, 20);
 		panel.add(textField);
 		textField.setColumns(10);

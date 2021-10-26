@@ -13,14 +13,14 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JPasswordField;
 
-public class TrocarSenha extends JFrame {
+public class TrocaSenhaGerente extends JFrame {
 
 	private JPanel contentPane;
 	private JPasswordField passwordAntigaSenha;
 	private JPasswordField passwordNovaSenha;
 	private JPasswordField passwordConfirmeASenha;
 
-	public TrocarSenha(Pessoas pessoa,Gerente gerente[],int indicedogerente,int indicedocliente) {
+	public TrocaSenhaGerente(Pessoas pessoa,Gerente gerente[],int indicedogerente) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 380, 210);
 		contentPane = new JPanel();
@@ -48,7 +48,8 @@ public class TrocarSenha extends JFrame {
 		btnAlterarSenha.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Alterar(gerente[indicedogerente].seuCliente[indicedocliente],gerente,passwordAntigaSenha,passwordNovaSenha,passwordConfirmeASenha);
+				Alterar(gerente[indicedogerente],gerente,passwordAntigaSenha,passwordNovaSenha,passwordConfirmeASenha);
+				gerente[indicedogerente].Salvar(gerente);
 				passwordAntigaSenha.setText("");
 				passwordNovaSenha.setText("");
 				passwordConfirmeASenha.setText("");
@@ -62,8 +63,7 @@ public class TrocarSenha extends JFrame {
 		btnVoltar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				AreaLogadaCliente janelaCliente = new AreaLogadaCliente(indicedocliente,gerente,indicedogerente);
-				gerente[indicedogerente].Salvar(gerente);
+				AreaLogadaGerente janelaCliente = new AreaLogadaGerente(gerente,indicedogerente);
 				setVisible(false);
 				janelaCliente.setVisible(true);
 			}
@@ -92,6 +92,7 @@ public class TrocarSenha extends JFrame {
 			if(String.valueOf(passwordNovaSenha.getPassword()).equals(String.valueOf(passwordConfirmeASenha.getPassword())))
 			{
 				pessoa.AlterarSenha(String.valueOf(pessoa.criptografia(String.valueOf(passwordNovaSenha.getPassword()))));
+				
 				JOptionPane.showMessageDialog(null,"Senha alterada");
 			}
 			else

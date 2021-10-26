@@ -12,6 +12,7 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		int i = 0;
+		int j = 0;
 		
 		
 		Gerente gerentebasico[] = new Gerente[20];
@@ -39,9 +40,9 @@ public class Main {
 			System.out.println("Error: "+e.getMessage());
 		}
 		
-		try(BufferedReader br = new BufferedReader(new FileReader(BancoDeClientes)))
+		try(BufferedReader cr = new BufferedReader(new FileReader(BancoDeClientes)))
 		{
-			String line = br.readLine();
+			String line = cr.readLine();
 			
 			while(line != null)
 			{
@@ -53,20 +54,31 @@ public class Main {
 				int indicedogerente = Integer.valueOf(vetor[3]);
 				Cliente novoCliente = new Cliente(login,nome,senha,gerentebasico[indicedogerente]);
 				gerentebasico[indicedogerente].AgregarCliente(novoCliente); 
-				line = br.readLine();
+				line = cr.readLine();
 			
 			}
-			br.close();
+			cr.close();
+			
 			
 		}
 		catch(IOException e)
 		{
 			System.out.println("Error: "+e.getMessage());
 		}
-		
-		
-		System.out.print(gerentebasico[0].login + "\n");
-		System.out.print(gerentebasico[0].senha  + "\n");
+		i = 0;
+			/*
+		while(gerentebasico[i] != null)
+		{
+			j=0;
+			while(gerentebasico[i].seuCliente[j] != null)
+			{
+				System.out.print(gerentebasico[i].seuCliente[j].nomedapessoa); 
+				j++;
+			}
+			i++;
+		}
+		*/
+	
 		Login MenuDeLogin = new Login(gerentebasico);
 		MenuDeLogin.setVisible(true);
 	}

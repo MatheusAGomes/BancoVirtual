@@ -129,10 +129,11 @@ public class AreaLogadaCliente extends JFrame {
 					}
 					
 					j = j + 1;
-				}}catch(Exception i) {
-					
 				}
-				JOptionPane.showMessageDialog(null,"Voce nao contém nenhuma conta poupanca");
+				}catch(Exception i) {
+					JOptionPane.showMessageDialog(null,"Voce nao contém nenhuma conta poupanca");
+				}
+				
 				
 			}
 		});

@@ -13,11 +13,14 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class TransferenciasEntreClientes extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtValor;
+	private JTextField txtConta;
 
 
 	public TransferenciasEntreClientes(int indice, Gerente gerente[]) {
@@ -45,6 +48,14 @@ public class TransferenciasEntreClientes extends JFrame {
 		
 		
 		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				setVisible(false);
+				AreaLogadaGerente Voltar = new AreaLogadaGerente(gerente,indice);
+				Voltar.setVisible(true);
+			}
+		});
 		btnVoltar.setBounds(10, 106, 368, 23);
 		contentPane.add(btnVoltar);
 		
@@ -64,16 +75,6 @@ public class TransferenciasEntreClientes extends JFrame {
 		
 		
 		
-		JComboBox comboBoxConta2 = new JComboBox();
-		comboBoxConta2.setBounds(56, 35, 312, 22);
-		panel.add(comboBoxConta2);
-		
-		JLabel lblNewLabel_1_1 = new JLabel("Conta");
-		lblNewLabel_1_1.setBounds(0, 39, 46, 14);
-		panel.add(lblNewLabel_1_1);
-		
-		
-		
 		
 		
 		
@@ -90,6 +91,20 @@ public class TransferenciasEntreClientes extends JFrame {
 		panel_1.add(lblNewLabel_3);
 		
 		txtValor = new JTextField();
+		txtValor.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				String value = txtValor.getText();
+	            int l = value.length();
+	            if (e.getKeyChar() >= '0' && e.getKeyChar() <= '9') {
+	            	txtValor.setEditable(true);
+	               
+	            } else {
+	            	txtValor.setEditable(false);
+	            	JOptionPane.showMessageDialog(null,"Voce so pode digitar numeros neste campo");
+	                    }
+	         }
+		});
 		txtValor.setBounds(66, 8, 292, 20);
 		panel_1.add(txtValor);
 		txtValor.setColumns(10);
@@ -116,31 +131,17 @@ public class TransferenciasEntreClientes extends JFrame {
 			}
 		
 		
-		JComboBox comboBoxCliente2 = new JComboBox();
-		comboBoxCliente2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				comboBoxConta2.removeAllItems();
-				MostrarContasComRestricoes((comboBoxCliente2.getSelectedItem().toString()),comboBoxConta2,gerente[indice],comboBoxConta1.getSelectedItem().toString());
-			}
-		});
-		comboBoxCliente2.setBounds(56, 0, 312, 22);
-		panel.add(comboBoxCliente2);
-		comboBoxCliente2.addItem(" ");
-		while(gerente[indice].seuCliente[j] != null) {
-		//	System.out.print(gerente[indice].seuCliente[j].nomedapessoa);
-			comboBoxCliente2.addItem((gerente[indice].seuCliente[j].nomedapessoa));
-			j++;
-			}
-		
 		
 		JButton btnSelecionar = new JButton("Selecionar");
 		btnSelecionar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				comboBoxConta2.removeAllItems();
 				setBounds(100, 100, 404, 314);
-				btnVoltar.setBounds(10, 241, 368, 23);
+				
+				
 				panel.setVisible(true);
+				panel.add(btnVoltar);
+				btnVoltar.setBounds(0, 68, 368, 23);
 				comboBoxCliente1.setEnabled(false);
 				comboBoxConta1.setEnabled(false);
 				
@@ -156,16 +157,39 @@ public class TransferenciasEntreClientes extends JFrame {
 		btnSelecionar_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				setBounds(100, 100, 799, 300);
-				panel_1.setVisible(true);
-				comboBoxCliente2.setEnabled(false);
-				comboBoxConta2.setEnabled(false);
+				
+				
+				
+				String ContaParaDeposito = txtConta.getText();
+				
+				
+				if(PegarConta(ContaParaDeposito,gerente) == -1)
+				{
+					JOptionPane.showMessageDialog(null,"Conta inexistente");
+				}
+				else
+				{
+					setBounds(100, 100, 799, 300);
+					
+					panel_1.setVisible(true);
+					panel_1.add(btnVoltar);
+					btnVoltar.setBounds(10,68,348,23);
+					txtConta.setEnabled(false);
+				}
+				
+				
+				
 				
 
 			}
 		});
-		btnSelecionar_1.setBounds(0, 68, 368, 23);
+		btnSelecionar_1.setBounds(0, 35, 368, 23);
 		panel.add(btnSelecionar_1);
+		
+		txtConta = new JTextField();
+		txtConta.setBounds(56, 1, 312, 20);
+		panel.add(txtConta);
+		txtConta.setColumns(10);
 		
 		
 		JButton btnTrasnferencias = new JButton("Transferir");
@@ -177,10 +201,11 @@ public class TransferenciasEntreClientes extends JFrame {
 				int indicedocliente = gerente[indice].AcharIndicePeloNome(comboBoxCliente1.getSelectedItem().toString(),gerente[indice]);
 				int indicedaconta = gerente[indice].seuCliente[indicedocliente].AcharIndice(comboBoxConta1.getSelectedItem().toString(),gerente[indice].seuCliente[indicedocliente]);
 				//segundo cliente
-				int idicedocliente2 = gerente[indice].AcharIndicePeloNome(comboBoxCliente2.getSelectedItem().toString(),gerente[indice]);
-				int indicedaconta2 = gerente[indice].seuCliente[idicedocliente2].AcharIndice(comboBoxConta2.getSelectedItem().toString(),gerente[indice].seuCliente[idicedocliente2]);
+				int indicedogerente2 = PegarGerente(txtConta.getText(),gerente);
+				int idicedocliente2 = PegarCliente(txtConta.getText(),gerente);
+				int indicedaconta2 = PegarConta(txtConta.getText(),gerente);
 
-				Transferir(gerente[indice].seuCliente[indicedocliente],gerente[indice].seuCliente[indicedocliente].conta[indicedaconta],gerente[indice].seuCliente[idicedocliente2],gerente[indice].seuCliente[idicedocliente2].conta[indicedaconta2],Double.valueOf(txtValor.getText().toString()));
+				Transferir(gerente[indice].seuCliente[indicedocliente],gerente[indice].seuCliente[indicedocliente].conta[indicedaconta],gerente[indicedogerente2].seuCliente[idicedocliente2],gerente[indicedogerente2].seuCliente[idicedocliente2].conta[indicedaconta2],Double.valueOf(txtValor.getText().toString()));
 				setVisible(false);
 				new AreaLogadaGerente(gerente,indice).setVisible(true);;
 			}
@@ -199,13 +224,113 @@ public class TransferenciasEntreClientes extends JFrame {
 		
 		
 	}
+	public int PegarGerente(String NumeroConta,Gerente gerente[])
+	{
+		int i = 0;
+		int j = 0;
+		int k = 0;
+		
+		
+		while(gerente[i] != null)
+		{ 
+			j = 0;
+			while(gerente[i].seuCliente[j] != null)
+			{
+				k = 0;
+				while(gerente[i].seuCliente[j].conta[k] != null)
+				{
+					
+					if(gerente[i].seuCliente[j].conta[k].numerodaconta == Integer.valueOf(NumeroConta))
+					{
+						return i;
+					}
+					k++;
+				}
+				j++;
+			}
+			
+			i++;
+		}
+		return -1;
+	}
+	
+	public int PegarCliente(String NumeroConta,Gerente gerente[])
+	{
+		int i = 0;
+		int j = 0;
+		int k = 0;
+		
+		
+		while(gerente[i] != null)
+		{ 
+			j = 0;
+			while(gerente[i].seuCliente[j] != null)
+			{
+				k = 0;
+				while(gerente[i].seuCliente[j].conta[k] != null)
+				{
+					
+					if(gerente[i].seuCliente[j].conta[k].numerodaconta == Integer.valueOf(NumeroConta))
+					{
+						return j;
+					}
+					k++;
+				}
+				j++;
+			}
+			
+			i++;
+		}
+		return -1;
+		
+		
+	}
+	public int PegarConta(String NumeroConta,Gerente gerente[])
+	{
+		int i = 0;
+		int j = 0;
+		int k = 0;
+		
+		
+		while(gerente[i] != null)
+		{ 
+			j = 0;
+			while(gerente[i].seuCliente[j] != null)
+			{
+				k = 0;
+				while(gerente[i].seuCliente[j].conta[k] != null)
+				{
+					
+					if(gerente[i].seuCliente[j].conta[k].numerodaconta == Integer.valueOf(NumeroConta))
+					{
+						System.out.print(gerente[i].seuCliente[j].nomedapessoa);
+						return k;
+					}
+					k++;
+				}
+				j++;
+			}
+			
+			i++;
+		}
+		return -1;
+		
+		
+	}
 
 	public void Transferir(Cliente transferidor, Conta contadotransferidor,Cliente receptor,Conta contadorecptor,double valoratransferir)
 	{
 		try {
-		contadotransferidor.Sacar(valoratransferir,transferidor);
-		contadorecptor.Aplicar(valoratransferir,receptor);
-		JOptionPane.showMessageDialog(null,"Transferencia efetuada com sucesso");
+			if(contadotransferidor.saldo >= valoratransferir) {
+				contadotransferidor.Sacar(valoratransferir,transferidor);
+				contadorecptor.Aplicar(valoratransferir,receptor);
+				JOptionPane.showMessageDialog(null,"Transferencia efetuada com sucesso");
+			}
+			else
+			{
+				JOptionPane.showMessageDialog(null,"Saldo insuficiente");
+
+			}
 		}
 		catch(Exception e)
 		{
@@ -248,6 +373,5 @@ public void MostrarContasComRestricoes(String nomedocorrentista,JComboBox comboB
 		
 	}
 }
-	
 }
 

@@ -13,6 +13,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class LimitesTaxas extends JFrame {
 
@@ -57,6 +59,23 @@ public class LimitesTaxas extends JFrame {
 		paneLimite.add(lblNewLabel_2);
 		
 		txtLimiteNovo = new JTextField();
+		txtLimiteNovo.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				String value = txtLimiteNovo.getText();
+	            //int l = value.length();
+	            if (e.getKeyChar() >= '0' && e.getKeyChar() <= '9') {
+	            	//textField.setEditable(true);
+	               
+	            } else {
+	            	//textField.setEditable(false);
+	            	String texto = txtLimiteNovo.getText();
+	            	txtLimiteNovo.setText(texto.substring(0,texto.length() - 1));
+	            	JOptionPane.showMessageDialog(null,"Voce so pode digitar numeros neste campo");
+	            	
+	            }
+			}
+		});
 		txtLimiteNovo.setBounds(80, 36, 282, 20);
 		paneLimite.add(txtLimiteNovo);
 		txtLimiteNovo.setColumns(10);
@@ -83,6 +102,7 @@ public class LimitesTaxas extends JFrame {
 		contentPane.add(lblNewLabel_3);
 		
 		JComboBox comboBoxCliente = new JComboBox();
+		
 		comboBoxCliente.setBounds(76, 17, 199, 22);
 		contentPane.add(comboBoxCliente);
 		while(gerente[indice].seuCliente[i] != null)
@@ -120,6 +140,23 @@ public class LimitesTaxas extends JFrame {
 		txtNovaTaxa.setColumns(10);
 		txtNovaTaxa.setBounds(78, 36, 284, 20);
 		paneTaxa.add(txtNovaTaxa);
+		txtNovaTaxa.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				String value = txtNovaTaxa.getText();
+	            //int l = value.length();
+	            if (e.getKeyChar() >= '0' && e.getKeyChar() <= '9') {
+	            	//textField.setEditable(true);
+	               
+	            } else {
+	            	//textField.setEditable(false);
+	            	String texto = txtNovaTaxa.getText();
+	            	txtNovaTaxa.setText(texto.substring(0,texto.length() - 1));
+	            	JOptionPane.showMessageDialog(null,"Voce so pode digitar numeros neste campo");
+	            	
+	            }
+			}
+		});
 		
 		
 		
@@ -141,11 +178,9 @@ public class LimitesTaxas extends JFrame {
 		btnSelecionar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				comboBoxConta.removeAllItems();
-				btnSelecionar.setEnabled(false);
-				MostrarContas((comboBoxCliente.getSelectedItem().toString()),comboBoxConta,gerente[indice]);
+				
 				comboBoxCliente.setEnabled(false);
-			//	comboBoxConta.setEnabled(false);
+				comboBoxConta.setEnabled(false);
 				setBounds(100, 100, 409, 233);
 			}
 		});
@@ -186,10 +221,17 @@ public class LimitesTaxas extends JFrame {
 				setVisible(false);
 			}
 		});
+		comboBoxCliente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				comboBoxConta.removeAllItems();
+				MostrarContas((comboBoxCliente.getSelectedItem().toString()),comboBoxConta,gerente[indice]);
+			}
+		});
 		
 		paneLimite.setVisible(false);
 		paneTaxa.setVisible(false);
 		setBounds(100, 100, 409, 120);
+		MostrarContas((comboBoxCliente.getSelectedItem().toString()),comboBoxConta,gerente[indice]);
 		
 	}
 		public void MostrarContas(String nomedocorrentista,JComboBox comboBox,Gerente gerente){

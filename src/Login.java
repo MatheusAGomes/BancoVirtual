@@ -3,6 +3,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -21,10 +22,9 @@ public class Login extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtUsername;
 	private JLabel lblSenha;
-	private JTextField txtSenha;
+	private JPasswordField txtSenha;
 
 	public Login(Gerente gerentebasico[]) {
-		int i =0;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 320, 345);
 		contentPane = new JPanel();
@@ -49,7 +49,7 @@ public class Login extends JFrame {
 		lblSenha.setBounds(32, 89, 55, 14);
 		panel.add(lblSenha);
 		
-		txtSenha = new JTextField();
+		txtSenha = new JPasswordField();
 		txtSenha.setColumns(10);
 		txtSenha.setBounds(119, 86, 138, 20);
 		panel.add(txtSenha);
@@ -90,14 +90,10 @@ public class Login extends JFrame {
 		String Opção = comboBox.getSelectedItem().toString();
 		String Gerente = "GERENTE";
 		String Cliente = "CLIENTE";
-		//String UsernameObtido = txtUsername.getText();
-		//String SenhaObtida = txtSenha.getText();
 		
 		String UsernameObtido = criptografia(txtUsername.getText());
-		String SenhaObtida = criptografia(txtSenha.getText());
+		String SenhaObtida = criptografia(String.valueOf(txtSenha.getPassword()));
 
-		System.out.print(UsernameObtido  + "\n");
-		System.out.print(SenhaObtida  + "\n");
 		
 		try {
 	
@@ -125,21 +121,28 @@ public class Login extends JFrame {
 									}
 								}
 							}
+							i++;
+							
+							
+			}
 							//
+			i =0;
+			while(i < 21)
+			{
 							if(Opção.equals(Cliente))
 							{	
 								j=0;
-								while(j<21)
+								while(gerentebasico[i].seuCliente[j] != null)
 								{
-									
-									
+									System.out.print(gerentebasico[i].seuCliente[j].nomedapessoa+"\t"+gerentebasico[i].seuCliente[j].login+"\t"+UsernameObtido+"\t"+gerentebasico[i].seuCliente[j].senha+"\t"+SenhaObtida+"\n");
 								if(UsernameObtido.equals(gerentebasico[i].seuCliente[j].login))
 								{
 									
 									if(SenhaObtida.equals(gerentebasico[i].seuCliente[j].senha))
 									{
+										
+										
 										chave = 1;
-										gerentebasico[i].seuCliente[j].nomedapessoa = txtUsername.getText();
 										AreaLogadaCliente MenuDoCliente = new AreaLogadaCliente(j,gerentebasico,i);
 										setVisible(false);
 										MenuDoCliente.setVisible(true);
@@ -152,12 +155,9 @@ public class Login extends JFrame {
 								
 								}
 							}
-		
-		
-						i++;
-		
-			
-			}
+							i++;
+			}	
+						
 		}
 		catch(Exception e) {
 			if(chave == 0)
