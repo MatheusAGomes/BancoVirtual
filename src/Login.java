@@ -76,6 +76,13 @@ public class Login extends JFrame {
 		panel.add(btnLogar);
 		
 		JButton btnLimpar = new JButton("Limpar");
+		btnLimpar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				txtUsername.setText("");
+				txtSenha.setText("");
+			}
+		});
 		btnLimpar.setBounds(32, 241, 225, 23);
 		panel.add(btnLimpar);
 		

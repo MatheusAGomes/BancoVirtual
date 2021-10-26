@@ -78,8 +78,19 @@ public class AbrirConta extends JFrame {
 				CriarConta(gerente,indicedogerente,indicedocliente,txtNumeroDaConta.getText());
 			}
 		});
-		btnCriarConta.setBounds(163, 152, 201, 23);
+		btnCriarConta.setBounds(163, 129, 201, 23);
 		panel.add(btnCriarConta);
+		
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				new AreaLogadaCliente(indicedocliente,gerente,indicedogerente).setVisible(true);
+				setVisible(false);
+			}
+		});
+		btnVoltar.setBounds(163, 158, 201, 23);
+		panel.add(btnVoltar);
 		setVisible(true);
 	}
 	
@@ -160,5 +171,4 @@ public class AbrirConta extends JFrame {
 	    }
 		
 	}
-
 }
